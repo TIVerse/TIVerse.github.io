@@ -1,24 +1,22 @@
 import { notFound } from "next/navigation";
-import { serialize } from "next-mdx-remote/serialize";
 import { getPostBySlug, getAllPosts } from "@/lib/mdx";
 import BlogPostClient from "./blog-post-client";
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
   
   if (!post) {
     notFound();
   }
 
-  const mdxSource = await serialize(post.content);
-
-  return <BlogPostClient post={post} mdxSource={mdxSource} />;
+  return <BlogPostClient post={post} />;
 }
 
 // Pre-render all blog posts at build time

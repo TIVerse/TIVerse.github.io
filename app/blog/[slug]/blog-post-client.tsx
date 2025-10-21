@@ -1,17 +1,26 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, LazyMotion, domAnimation } from "framer-motion";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import Link from "next/link";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
 import type { BlogPost } from "@/lib/mdx";
+import { useState, useEffect } from "react";
 
 interface BlogPostClientProps {
   post: BlogPost;
-  mdxSource: MDXRemoteSerializeResult;
 }
 
-export default function BlogPostClient({ post, mdxSource }: BlogPostClientProps) {
+export default function BlogPostClient({ post }: BlogPostClientProps) {
+  const [isMounted, setIsMounted] = useState(false);
+  const [mdxSource, setMdxSource] = useState<MDXRemoteSerializeResult | null>(null);
+
+  useEffect(() => {
+    setIsMounted(true);
+    serialize(post.content).then(setMdxSource);
+  }, [post.content]);
+
   const formattedDate = new Date(post.date).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -49,29 +58,37 @@ export default function BlogPostClient({ post, mdxSource }: BlogPostClientProps)
     ),
   };
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0F172A] via-[#1e293b] to-[#0F172A] py-20">
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Link
-            href="/blog"
-            className="inline-flex items-center text-[#38BDF8] hover:underline mb-8"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Blog
-          </Link>
-        </motion.div>
+  const MotionDiv = isMounted ? motion.div : 'div';
+  const MotionHeader = isMounted ? motion.header : 'header';
 
-        <motion.header
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="mb-12"
-        >
+  return (
+    <LazyMotion features={domAnimation} strict>
+      <div className="min-h-screen bg-gradient-to-b from-[#0F172A] via-[#1e293b] to-[#0F172A] py-20">
+        <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <MotionDiv
+            {...(isMounted && {
+              initial: { opacity: 0, y: 20 },
+              animate: { opacity: 1, y: 0 },
+              transition: { duration: 0.5 }
+            })}
+          >
+            <Link
+              href="/blog"
+              className="inline-flex items-center text-[#38BDF8] hover:underline mb-8"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Blog
+            </Link>
+          </MotionDiv>
+
+          <MotionHeader
+            {...(isMounted && {
+              initial: { opacity: 0, y: 20 },
+              animate: { opacity: 1, y: 0 },
+              transition: { delay: 0.2, duration: 0.5 }
+            })}
+            className="mb-12"
+          >
           <span className="inline-block px-3 py-1 text-sm font-medium rounded-full bg-[#38BDF8]/10 text-[#38BDF8] border border-[#38BDF8]/20 mb-4">
             {post.category}
           </span>
@@ -95,19 +112,26 @@ export default function BlogPostClient({ post, mdxSource }: BlogPostClientProps)
               </div>
             )}
           </div>
-        </motion.header>
+        </MotionHeader>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="max-w-none"
-        >
-          <div className="p-8 rounded-xl glass mdx-content">
-            <MDXRemote {...mdxSource} components={components} />
-          </div>
-        </motion.div>
-      </article>
-    </div>
+          <MotionDiv
+            {...(isMounted && {
+              initial: { opacity: 0, y: 20 },
+              animate: { opacity: 1, y: 0 },
+              transition: { delay: 0.4, duration: 0.5 }
+            })}
+            className="max-w-none"
+          >
+            <div className="p-8 rounded-xl glass mdx-content">
+              {mdxSource ? (
+                <MDXRemote {...mdxSource} components={components} />
+              ) : (
+                <div className="text-gray-400">Loading content...</div>
+              )}
+            </div>
+          </MotionDiv>
+        </article>
+      </div>
+    </LazyMotion>
   );
 }
