@@ -1,0 +1,27 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#38BDF8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#818CF8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer circle -->
+  <circle cx="100" cy="100" r="90" stroke="url(#gradient)" stroke-width="4" fill="none" opacity="0.3"/>
+  
+  <!-- Inner hexagon -->
+  <path d="M100 30 L150 62.5 L150 125 L100 157.5 L50 125 L50 62.5 Z" 
+        stroke="url(#gradient)" stroke-width="3" fill="none"/>
+  
+  <!-- T letter -->
+  <text x="100" y="120" font-family="Arial, sans-serif" font-size="72" font-weight="bold" 
+        fill="url(#gradient)" text-anchor="middle">T</text>
+  
+  <!-- Dots pattern -->
+  <circle cx="100" cy="40" r="3" fill="#38BDF8"/>
+  <circle cx="145" cy="68" r="3" fill="#38BDF8"/>
+  <circle cx="145" cy="120" r="3" fill="#818CF8"/>
+  <circle cx="100" cy="150" r="3" fill="#818CF8"/>
+  <circle cx="55" cy="120" r="3" fill="#818CF8"/>
+  <circle cx="55" cy="68" r="3" fill="#38BDF8"/>
+</svg>
