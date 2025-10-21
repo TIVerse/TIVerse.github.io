@@ -72,3 +72,5 @@ Thumbs.db
 
 # Turbopack
 .turbo/
+SEO_*
+OG_IMAGE_INSTRUCTIONS.md

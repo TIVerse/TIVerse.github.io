@@ -1,7 +1,7 @@
 # TIVerse Website
 
 <div align="center">
-  <h1>🌌 TIVerse</h1>
+  <h1>🌌 TIVerse | Tonmoy Infrastructure & Vison</h1>
   <p><strong>Engineering the Future of Open Infrastructure</strong></p>
   
   <p>
@@ -23,9 +23,10 @@ TIVerse is an open-source ecosystem by **Tonmoy Infrastructure & Vision**, led b
 - 📱 **Responsive**: Fully optimized for all devices
 - 🔗 **GitHub Integration**: Live data fetching from GitHub API
 - 📝 **MDX Blog**: Built-in blog system with MDX support
-- 🚀 **SEO Optimized**: Complete meta tags, sitemap, and robots.txt
+- 🚀 **SEO Optimized**: Complete meta tags, JSON-LD structured data, sitemap, and robots.txt
 - ⚡ **Performance**: Built with Next.js 15 App Router and Turbopack
 - 🎭 **Dark Mode**: Beautiful dark theme by default with toggle option
+- 🔍 **Search Engine Ready**: Comprehensive SEO with Open Graph and Twitter Cards
 
 ## 🛠️ Tech Stack
 
@@ -66,7 +67,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the website.
 ## 📁 Project Structure
 
 ```
-tiverse-website/
+tiverse.github.io/
 ├── app/                    # Next.js App Router pages
 │   ├── about/             # About page
 │   ├── blog/              # Blog listing & individual posts
@@ -173,6 +174,20 @@ The output will be in the `.next` folder. You can deploy to any platform that su
 ## 📄 License
 
 This project is part of the TIVerse ecosystem. See individual repositories for license information.
+
+## 🔍 SEO Configuration
+
+This website is fully optimized for search engines. See [SEO_GUIDE.md](./SEO_GUIDE.md) for:
+- Google Search Console setup instructions
+- Structured data implementation details
+- Tips for improving search rankings
+- Creating og-image.png
+
+**Important:** After deployment, complete these steps:
+1. Verify your site in Google Search Console
+2. Create and add `public/og-image.png` (1200x630px)
+3. Update Google verification code in `lib/seo.ts`
+4. Submit your sitemap to Google
 
 ## 🤝 Contributing
 

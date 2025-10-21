@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://tiverse.dev/sitemap.xml",
+    sitemap: "https://tiverse.github.io/sitemap.xml",
   };
 }
