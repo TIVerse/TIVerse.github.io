@@ -17,10 +17,11 @@ export const metadata: Metadata = {
   keywords: ['TIVerse', 'open source', 'infrastructure', 'developer tools', 'Tonmoy'],
   authors: [{ name: 'TIVerse Team' }],
   creator: 'TIVerse',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://tiverse.dev'),
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://tiverse.dev',
+    url: '/',
     title: 'TIVerse - Tonmoy Infrastructure & Vision',
     description: 'Empowering developers with open-source tools that are performant, reliable, and built for the real world.',
     siteName: 'TIVerse',

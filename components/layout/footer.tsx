@@ -137,7 +137,7 @@ export function Footer() {
                   <div key={social.name} className="flex items-center justify-start lg:justify-end space-x-3">
                     <div className="flex items-center space-x-2 text-xs font-mono text-slate-400">
                       <span className="text-slate-600">{index === 0 ? '  ' : '  '}</span>
-                      <span className="text-blue-400">"{social.name}"</span>
+                      <span className="text-blue-400">&quot;{social.name}&quot;</span>
                       <span className="text-slate-500">:</span>
                     </div>
                     <Button
