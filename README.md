@@ -1,212 +1,246 @@
-# TIVerse Website
+# TIVerse - Tonmoy Infrastructure & Vision
 
-<div align="center">
-  <h1>🌌 TIVerse | Tonmoy Infrastructure & Vison</h1>
-  <p><strong>Engineering the Future of Open Infrastructure</strong></p>
-  
-  <p>
-    <a href="https://github.com/tiverse"><img src="https://img.shields.io/badge/GitHub-tiverse-38BDF8?style=for-the-badge&logo=github" alt="GitHub"></a>
-    <a href="https://nextjs.org"><img src="https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js" alt="Next.js"></a>
-    <a href="https://www.typescriptlang.org"><img src="https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript" alt="TypeScript"></a>
-  </p>
-</div>
+A modern, production-ready website for TIVerse, showcasing our open-source ecosystem, projects, mission, and vision. Built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.
 
----
+![TIVerse Website](https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2850&q=80)
 
-## 📖 About
+## 🚀 Features
 
-TIVerse is an open-source ecosystem by **Tonmoy Infrastructure & Vision**, led by **Eshan Roy** (CEO @ Tonmoy Infrastructure). This website serves as the central hub for all TIVerse projects, showcasing our tools, community, and vision for the future of infrastructure.
-
-## ✨ Features
-
-- 🎨 **Modern UI**: Glassmorphism design with smooth animations powered by Framer Motion
-- 📱 **Responsive**: Fully optimized for all devices
-- 🔗 **GitHub Integration**: Live data fetching from GitHub API
-- 📝 **MDX Blog**: Built-in blog system with MDX support
-- 🚀 **SEO Optimized**: Complete meta tags, JSON-LD structured data, sitemap, and robots.txt
-- ⚡ **Performance**: Built with Next.js 15 App Router and Turbopack
-- 🎭 **Dark Mode**: Beautiful dark theme by default with toggle option
-- 🔍 **Search Engine Ready**: Comprehensive SEO with Open Graph and Twitter Cards
+- **Modern Design**: Clean, developer-focused UI with glassmorphism effects and subtle animations
+- **Responsive**: Fully responsive design optimized for all devices
+- **Performance**: Built with Next.js 13+ App Router for optimal performance
+- **Accessibility**: WCAG compliant with semantic HTML and keyboard navigation
+- **SEO Optimized**: Complete meta tags, Open Graph, and structured data
+- **Dark/Light Mode**: System-aware theme switching with persistent preferences
+- **Type Safety**: Full TypeScript coverage with strict mode enabled
+- **Animation**: Smooth animations and micro-interactions with Framer Motion
 
 ## 🛠️ Tech Stack
 
-- **Framework**: [Next.js 15](https://nextjs.org) (App Router)
-- **Language**: [TypeScript](https://www.typescriptlang.org)
-- **Styling**: [TailwindCSS v4](https://tailwindcss.com)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Icons**: [Lucide React](https://lucide.dev)
-- **Content**: [MDX](https://mdxjs.com) with next-mdx-remote
-- **SEO**: next-seo, automatic sitemap generation
-- **Linting**: [Biome](https://biomejs.dev)
+- **Framework**: Next.js 13+ (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS + Shadcn/UI
+- **Icons**: Lucide React
+- **Animations**: Framer Motion
+- **Theme**: next-themes
+- **Deployment**: Vercel (optimized build configuration)
+
+## 📁 Project Structure
+
+```
+tiverse-website/
+├── app/                    # Next.js App Router
+│   ├── about/             # About page
+│   ├── blog/              # Blog listing
+│   ├── contact/           # Contact form
+│   ├── projects/          # Projects showcase
+│   ├── layout.tsx         # Root layout
+│   ├── page.tsx           # Homepage
+│   └── not-found.tsx      # 404 page
+├── components/
+│   ├── ui/                # Shadcn/UI components
+│   ├── layout/            # Layout components (header, footer)
+│   └── theme-provider.tsx # Theme provider
+├── lib/
+│   └── utils.ts           # Utility functions
+├── public/                # Static assets
+└── styles/
+    └── globals.css        # Global styles
+```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js 18+ installed
-- npm, yarn, pnpm, or bun
+- Node.js 18+ 
+- npm or yarn or pnpm
 
 ### Installation
 
+1. Clone the repository:
 ```bash
-# Install dependencies
+git clone https://github.com/tiverse/website.git
+cd tiverse-website
+```
+
+2. Install dependencies:
+```bash
 npm install
+# or
+yarn install
+# or
+pnpm install
+```
 
-# Run development server
+3. Run the development server:
+```bash
 npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
+# or
+yarn dev
+# or
+pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the website.
-
-## 📁 Project Structure
-
-```
-tiverse.github.io/
-├── app/                    # Next.js App Router pages
-│   ├── about/             # About page
-│   ├── blog/              # Blog listing & individual posts
-│   ├── community/         # Community & contributors
-│   ├── contact/           # Contact page
-│   ├── contribute/        # Contribution guide
-│   ├── projects/          # Projects listing
-│   ├── layout.tsx         # Root layout
-│   ├── page.tsx           # Home page
-│   ├── sitemap.ts         # Sitemap generation
-│   └── robots.ts          # Robots.txt
-├── components/            # React components
-│   ├── layout/           # Layout components (Navbar, Footer)
-│   ├── ui/               # Reusable UI components
-│   └── project-card.tsx  # Project card component
-├── lib/                   # Utility functions
-│   ├── github.ts         # GitHub API integration
-│   ├── mdx.ts            # MDX utilities
-│   ├── seo.ts            # SEO configuration
-│   └── utils.ts          # Helper functions
-├── content/blog/          # MDX blog posts
-├── public/                # Static assets
-└── styles/                # Global styles
-```
-
-## 📝 Content Management
-
-### Adding Blog Posts
-
-Create MDX files in `content/blog/`:
-
-```mdx
----
-title: "Your Post Title"
-description: "Post description"
-date: "2025-01-20"
-category: "Announcements"
-author: "Your Name"
----
-
-# Your Content Here
-
-Write your blog post content in MDX format...
-```
-
-### GitHub Integration
-
-The website automatically fetches:
-- Organization repositories
-- Contributors
-- Good first issues
-- Organization statistics
-
-Data is cached for 1 hour to optimize API usage.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## 🎨 Customization
 
-### Theme Colors
+### Brand Colors
 
-Edit `app/globals.css`:
+The website uses TIVerse's signature color palette defined in `tailwind.config.ts`:
 
-```css
-:root {
-  --background: #0F172A;
-  --foreground: #ededed;
-  --accent: #38BDF8;
+- **Primary**: `#4F46E5` (Indigo 600)
+- **Secondary**: Various shades of purple and indigo
+- **Accent**: Complementary colors for highlights
+
+### Content Updates
+
+- **Projects**: Update the projects array in `app/projects/page.tsx`
+- **Blog Posts**: Add new posts to the blogPosts array in `app/blog/page.tsx`
+- **Company Info**: Modify content in `app/about/page.tsx`
+
+### Styling
+
+The website uses Tailwind CSS with custom design tokens. Key styling files:
+
+- `app/globals.css` - Global styles and CSS variables
+- `tailwind.config.ts` - Tailwind configuration and custom colors
+- `components.json` - Shadcn/UI configuration
+
+## 📝 Adding Content
+
+### New Blog Post
+
+Add a new post object to the `blogPosts` array in `app/blog/page.tsx`:
+
+```typescript
+{
+  id: 7,
+  title: 'Your Post Title',
+  excerpt: 'Brief description...',
+  content: 'Full content...',
+  author: 'TIVerse Team',
+  date: '2024-01-20',
+  readTime: '5 min read',
+  category: 'Development',
+  tags: ['tag1', 'tag2'],
+  featured: false,
 }
 ```
 
-### Site Configuration
+### New Project
 
-Edit `lib/seo.ts`:
+Add a new project to the `projects` array in `app/projects/page.tsx`:
 
 ```typescript
-export const siteConfig = {
-  name: "TIVerse",
-  title: "TIVerse - Engineering the Future of Open Infrastructure",
-  description: "...",
-  url: "https://tiverse.dev",
-  // ...
-};
+{
+  id: 7,
+  name: 'Project Name',
+  description: 'Project description...',
+  stars: 1234,
+  forks: 89,
+  watchers: 45,
+  language: 'TypeScript',
+  languageColor: 'bg-blue-500',
+  category: 'Category',
+  status: 'stable',
+  lastUpdate: '2024-01-20',
+  topics: ['topic1', 'topic2'],
+  license: 'MIT',
+}
 ```
 
-## 🚢 Deployment
+## 🚀 Deployment
 
-### Deploy to Vercel (Recommended)
+### Vercel (Recommended)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/tiverse/web)
+1. Push your code to a Git repository (GitHub, GitLab, Bitbucket)
+2. Import your project on [Vercel](https://vercel.com)
+3. Configure environment variables if needed
+4. Deploy!
 
-1. Push your code to GitHub
-2. Import the project to Vercel
-3. Deploy automatically with every push
+The website is optimized for Vercel with automatic deployments on push.
 
 ### Other Platforms
 
-Build the production bundle:
+The website exports as a static site and can be deployed to:
 
+- Netlify
+- GitHub Pages
+- AWS S3 + CloudFront
+- Any static hosting provider
+
+Run the build command:
 ```bash
 npm run build
 ```
 
-The output will be in the `.next` folder. You can deploy to any platform that supports Next.js.
+The `out` directory contains the static files ready for deployment.
 
-## 📄 License
+## 📊 Analytics
 
-This project is part of the TIVerse ecosystem. See individual repositories for license information.
+To add analytics, install your preferred solution:
 
-## 🔍 SEO Configuration
+### Vercel Analytics
+```bash
+npm install @vercel/analytics
+```
 
-This website is fully optimized for search engines. See [SEO_GUIDE.md](./SEO_GUIDE.md) for:
-- Google Search Console setup instructions
-- Structured data implementation details
-- Tips for improving search rankings
-- Creating og-image.png
+### Plausible
+```bash
+npm install next-plausible
+```
 
-**Important:** After deployment, complete these steps:
-1. Verify your site in Google Search Console
-2. Create and add `public/og-image.png` (1200x630px)
-3. Update Google verification code in `lib/seo.ts`
-4. Submit your sitemap to Google
+## 🔧 Configuration
+
+### Environment Variables
+
+Create a `.env.local` file for local development:
+
+```env
+# Optional: Add any environment-specific variables
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
+
+### SEO Configuration
+
+Update metadata in `app/layout.tsx`:
+
+```typescript
+export const metadata: Metadata = {
+  title: 'TIVerse - Your Title',
+  description: 'Your description...',
+  // ... other metadata
+}
+```
 
 ## 🤝 Contributing
 
-We welcome contributions! Please check out our [Contributing Guide](/contribute) for guidelines.
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
 
-## 💬 Community
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-- **GitHub**: [github.com/tiverse](https://github.com/tiverse)
-- **Discussions**: [GitHub Discussions](https://github.com/orgs/tiverse/discussions)
-- **Email**: eshanized@proton.me
+## 📄 License
 
-## 👨‍💼 Leadership
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-**Eshan Roy** - CEO @ Tonmoy Infrastructure  
-[GitHub](https://github.com/eshanized)
+## 🙏 Acknowledgments
+
+- Built with [Next.js](https://nextjs.org/)
+- UI components by [Shadcn/UI](https://ui.shadcn.com/)
+- Icons by [Lucide](https://lucide.dev/)
+- Animations by [Framer Motion](https://www.framer.com/motion/)
+
+## 📞 Support
+
+- 📧 Email: hello@tiverse.dev
+- 🐙 GitHub: [@tiverse](https://github.com/tiverse)
+- 🐦 Twitter: [@tiverse](https://twitter.com/tiverse)
 
 ---
 
-<div align="center">
-  <p>Built with ❤️ by the TIVerse Team</p>
-  <p>© 2025 TIVerse - Tonmoy Infrastructure & Vision</p>
-</div>
+**TIVerse** - Empowering developers with open-source tools that are performant, reliable, and built for the real world.

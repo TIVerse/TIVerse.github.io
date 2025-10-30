@@ -1,52 +1,56 @@
-"use client";
+import * as React from 'react';
+import { Slot } from '@radix-ui/react-slot';
+import { cva, type VariantProps } from 'class-variance-authority';
 
-import { motion } from "framer-motion";
-import { LucideIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
-interface ButtonProps {
-  children: React.ReactNode;
-  href?: string;
-  onClick?: () => void;
-  variant?: "primary" | "secondary" | "outline";
-  icon?: LucideIcon;
-  className?: string;
+const buttonVariants = cva(
+  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  {
+    variants: {
+      variant: {
+        default: 'bg-primary text-primary-foreground hover:bg-primary/90',
+        destructive:
+          'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+        outline:
+          'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
+        secondary:
+          'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+        ghost: 'hover:bg-accent hover:text-accent-foreground',
+        link: 'text-primary underline-offset-4 hover:underline',
+      },
+      size: {
+        default: 'h-10 px-4 py-2',
+        sm: 'h-9 rounded-md px-3',
+        lg: 'h-11 rounded-md px-8',
+        icon: 'h-10 w-10',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+      size: 'default',
+    },
+  }
+);
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
 }
 
-export function Button({
-  children,
-  href,
-  onClick,
-  variant = "primary",
-  icon: Icon,
-  className,
-}: ButtonProps) {
-  const baseClasses = "inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-300 shine-on-hover glow-hover";
-  
-  const variants = {
-    primary: "bg-gradient-to-br from-[#38BDF8] to-[#818CF8] text-white hover:opacity-95 shadow-lg shadow-[#38BDF8]/20",
-    secondary: "bg-white/10 text-white hover:bg-white/20 backdrop-blur-lg border border-white/10",
-    outline: "border-2 border-[#38BDF8] text-[#38BDF8] hover:bg-[#38BDF8] hover:text-white",
-  };
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : 'button';
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+Button.displayName = 'Button';
 
-  const Component = href ? motion.a : motion.button;
-  const isExternal = href?.startsWith("http") || href?.startsWith("mailto:") || href?.startsWith("tel:");
-  const isInternal = href?.startsWith("/");
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-  const prefixedHref = isInternal && basePath && basePath !== "/" ? `${basePath}${href}` : href;
-
-  return (
-    <Component
-      href={prefixedHref}
-      onClick={onClick}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      className={cn(baseClasses, variants[variant], className)}
-      target={isExternal ? "_blank" : undefined}
-      rel={isExternal ? "noopener noreferrer" : undefined}
-    >
-      {Icon && <Icon className="w-5 h-5 mr-2" />}
-      {children}
-    </Component>
-  );
-}
+export { Button, buttonVariants };

@@ -1,49 +1,57 @@
-import type { Metadata } from "next";
-import { Ubuntu } from "next/font/google";
-import "./globals.css";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
-import { constructMetadata, generateOrganizationSchema, generateWebsiteSchema } from "@/lib/seo";
+import './globals.css';
+import type { Metadata } from 'next';
+import { Fira_Code } from 'next/font/google';
+import { ThemeProvider } from '@/components/theme-provider';
+import { Header } from '@/components/layout/header';
+import { Footer } from '@/components/layout/footer';
 
-const ubuntu = Ubuntu({
-  weight: ["300", "400", "500", "700"],
-  subsets: ["latin"],
-  variable: "--font-ubuntu",
-  display: "swap",
+const firaCode = Fira_Code({ 
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-fira-code',
 });
 
-export const metadata: Metadata = constructMetadata();
+export const metadata: Metadata = {
+  title: 'TIVerse - Tonmoy Infrastructure & Vision',
+  description: 'Empowering developers with open-source tools that are performant, reliable, and built for the real world.',
+  keywords: ['TIVerse', 'open source', 'infrastructure', 'developer tools', 'Tonmoy'],
+  authors: [{ name: 'TIVerse Team' }],
+  creator: 'TIVerse',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://tiverse.dev',
+    title: 'TIVerse - Tonmoy Infrastructure & Vision',
+    description: 'Empowering developers with open-source tools that are performant, reliable, and built for the real world.',
+    siteName: 'TIVerse',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'TIVerse - Tonmoy Infrastructure & Vision',
+    description: 'Empowering developers with open-source tools that are performant, reliable, and built for the real world.',
+  },
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-  const organizationSchema = generateOrganizationSchema();
-  const websiteSchema = generateWebsiteSchema();
-
+}) {
   return (
-    <html lang="en" className={`dark ${ubuntu.variable}`}>
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(websiteSchema),
-          }}
-        />
-      </head>
-      <body className="antialiased">
-        <Navbar />
-        <main className="min-h-screen pt-16">
-          {children}
-        </main>
-        <Footer />
+    <html lang="en" suppressHydrationWarning>
+      <body className={firaCode.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="min-h-screen bg-gradient-to-br from-background via-background to-background/95">
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

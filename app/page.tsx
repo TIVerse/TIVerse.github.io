@@ -1,261 +1,533 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { ArrowRight, Github, Star, GitFork, Users, Code2, Server, MonitorDot, BarChart3 } from "lucide-react";
-import { useEffect, useState } from "react";
-import { ProjectCard } from "@/components/project-card";
-import { StatCard } from "@/components/ui/stat-card";
-import { Button } from "@/components/ui/button";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { getOrgStats, getFeaturedRepos, type GitHubRepo, type GitHubOrgStats } from "@/lib/github";
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Github, Star, GitFork, Users, Code as Code2, Zap, Shield } from 'lucide-react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { fetchTIVerseRepos, type ProcessedProject } from '@/lib/github';
+
+const features = [
+  {
+    icon: Code2,
+    title: 'Developer-First',
+    description: 'Tools built by developers, for developers. Every solution is crafted with the developer experience in mind.',
+  },
+  {
+    icon: Zap,
+    title: 'High Performance',
+    description: 'Optimized for speed and efficiency. Our tools are designed to handle real-world scale and complexity.',
+  },
+  {
+    icon: Shield,
+    title: 'Production Ready',
+    description: 'Battle-tested in production environments. Reliable, secure, and maintainable solutions you can trust.',
+  },
+];
 
 export default function Home() {
-  const [stats, setStats] = useState<GitHubOrgStats>({ totalStars: 0, totalForks: 0, totalRepos: 0, totalContributors: 0 });
-  const [featuredRepos, setFeaturedRepos] = useState<GitHubRepo[]>([]);
+  const [projects, setProjects] = useState<ProcessedProject[]>([]);
+  const [totalStats, setTotalStats] = useState({
+    totalProjects: 0,
+    totalStars: 0,
+    totalForks: 0,
+    totalContributors: 100, // Estimated
+  });
 
   useEffect(() => {
-    async function loadData() {
-      const [statsData, reposData] = await Promise.all([
-        getOrgStats(),
-        getFeaturedRepos(),
-      ]);
-      setStats(statsData);
-      setFeaturedRepos(reposData);
+    async function loadProjects() {
+      try {
+        const data = await fetchTIVerseRepos();
+        setProjects(data.slice(0, 3)); // Show top 3 projects
+        
+        // Calculate real stats
+        const stats = data.reduce((acc, project) => ({
+          totalProjects: acc.totalProjects + 1,
+          totalStars: acc.totalStars + project.stars,
+          totalForks: acc.totalForks + project.forks,
+          totalContributors: acc.totalContributors,
+        }), { totalProjects: 0, totalStars: 0, totalForks: 0, totalContributors: 100 });
+        
+        setTotalStats(stats);
+      } catch (error) {
+        console.error('Error loading projects:', error);
+        // Keep default empty state
+      }
     }
-    loadData();
+
+    loadProjects();
   }, []);
 
   return (
-    <div className="relative">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Animated Background */}
-        <div className="absolute inset-0 animated-gradient opacity-50" />
-        <div className="absolute inset-0 aurora pointer-events-none" aria-hidden="true" />
-        <div className="absolute inset-0 bg-[#0F172A]/70" />
-        
-        {/* Floating Elements */}
-        <div className="absolute inset-0 overflow-hidden" suppressHydrationWarning>
-          {[...Array(20)].map((_, i) => {
-            // Use index-based positions for consistent SSR/client rendering
-            const seedX = (i * 97 + 13) % 100;
-            const seedY = (i * 73 + 29) % 100;
-            const duration = 15 + (i % 10);
-            
-            return (
-              <motion.div
-                key={i}
-                className="absolute w-2 h-2 bg-[#38BDF8] rounded-full"
-                initial={{
-                  left: `${seedX}%`,
-                  top: `${seedY}%`,
-                }}
-                animate={{
-                  left: [`${seedX}%`, `${(seedX + 50) % 100}%`],
-                  top: [`${seedY}%`, `${(seedY + 50) % 100}%`],
-                }}
-                transition={{
-                  duration: duration,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  ease: "linear",
-                }}
-                style={{ willChange: "left, top" }}
-              />
-            );
-          })}
-        </div>
+    <div className="pt-16">
+      {/* Hero Section with Code Terminal Aesthetic */}
+      <section className="relative overflow-hidden">
+        {/* Grid pattern background */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
-        {/* Hero Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+        {/* Gradient overlays */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-background to-pink-50/30 dark:from-purple-950 dark:via-background dark:to-pink-950"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(192,132,252,0.15),transparent_50%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(192,132,252,0.2),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(244,114,182,0.12),transparent_50%)] dark:bg-[radial-gradient(circle_at_70%_80%,rgba(244,114,182,0.18),transparent_50%)]"></div>
+
+        <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40">
+          <div className="text-center max-w-5xl mx-auto">
             <motion.div
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
             >
-              <h1 className="text-6xl md:text-8xl font-bold mb-4">
-                <span className="gradient-text">TIVerse</span>
-              </h1>
+              {/* Terminal-style status badge */}
+              <div className="inline-flex items-center space-x-3 mb-6 px-4 py-2 bg-background/80 backdrop-blur-sm border border-border/50 rounded-lg shadow-lg">
+                <div className="flex space-x-1.5">
+                  <div className="w-2.5 h-2.5 bg-red-400 rounded-full"></div>
+                  <div className="w-2.5 h-2.5 bg-yellow-400 rounded-full"></div>
+                  <div className="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse"></div>
+                </div>
+                <span className="text-xs font-mono text-muted-foreground">status: building_in_public</span>
+              </div>
+
+              {/* Code-style title */}
+              <div className="mb-6 space-y-2">
+                <div className="text-left max-w-fit mx-auto">
+                  <span className="text-sm font-mono text-muted-foreground/70">1 </span>
+                  <span className="text-sm font-mono text-cyan-500">const</span>
+                  <span className="text-sm font-mono text-foreground"> mission = </span>
+                  <span className="text-sm font-mono text-blue-500">"</span>
+                </div>
+
+                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground tracking-tight leading-[1.1]">
+                  <motion.span
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                  >
+                    Building the Future of{" "}
+                  </motion.span>
+                  <motion.span 
+                    className="relative inline-block"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.4, type: "spring", stiffness: 100 }}
+                  >
+                    <span className="font-mono bg-gradient-to-r from-purple-600 via-pink-500 to-fuchsia-500 bg-clip-text text-transparent animate-pulse">
+                      Open Source
+                    </span>
+                    <motion.span 
+                      className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-600 via-pink-500 to-fuchsia-500 rounded-full"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: 0.8, delay: 0.6 }}
+                      style={{ transformOrigin: 'left' }}
+                    ></motion.span>
+                  </motion.span>
+                </h1>
+
+                <div className="text-left max-w-fit mx-auto">
+                  <span className="text-sm font-mono text-blue-500">"</span>
+                  <span className="text-sm font-mono text-muted-foreground/70">;</span>
+                </div>
+              </div>
             </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto"
+            {/* Code comment style description */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed"
             >
-              Engineering the Future of Open Infrastructure
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-lg text-gray-400 mb-12"
-            >
-              An open-source ecosystem by Tonmoy Infrastructure & Vision • Led by Eshan Roy
-            </motion.p>
+              <div className="flex items-start space-x-2">
+                <span className="text-emerald-500 font-mono">{"/*"}</span>
+                <p className="flex-1">
+                  Empowering developers with open-source tools that are performant, reliable, and built for the real world.
+                </p>
+                <span className="text-emerald-500 font-mono">{"*/"}</span>
+              </div>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.8 }}
-              className="flex flex-wrap justify-center gap-4"
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
             >
-              <Button href="/projects" variant="primary" icon={Code2}>
-                Explore Projects
+              {/* Terminal-style buttons */}
+              <Button size="lg" className="font-mono bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg hover:shadow-xl transition-all group" asChild>
+                <Link href="/projects">
+                  <span className="mr-2">$</span>
+                  explore --projects
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </Button>
-              <Button href="https://github.com/tiverse" variant="outline" icon={Github}>
-                View on GitHub
-              </Button>
-              <Button href="/contribute" variant="secondary" icon={ArrowRight}>
-                Start Contributing
+              <Button size="lg" variant="outline" className="font-mono border-2 hover:bg-accent" asChild>
+                <Link href="https://github.com/tiverse" target="_blank" rel="noopener noreferrer">
+                  <Github className="mr-2 h-4 w-4" />
+                  git clone github
+                </Link>
               </Button>
             </motion.div>
-          </motion.div>
-        </div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-[#38BDF8] rounded-full flex justify-center"
-          >
-            <motion.div className="w-1 h-3 bg-[#38BDF8] rounded-full mt-2" />
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-20 bg-[#0F172A]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <StatCard icon={Star} label="Total Stars" value={stats.totalStars} index={0} />
-            <StatCard icon={GitFork} label="Total Forks" value={stats.totalForks} index={1} />
-            <StatCard icon={Code2} label="Public Repos" value={stats.totalRepos} index={2} />
-            <StatCard icon={Users} label="Contributors" value="50+" index={3} />
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Projects Section */}
-      <section className="py-20 bg-gradient-to-b from-[#0F172A] to-[#1e293b]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            title="Featured Projects"
-            subtitle="Explore our innovative open-source tools and infrastructure"
-            centered
-          />
-
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredRepos.length > 0 ? (
-              featuredRepos.map((repo, index) => (
-                <ProjectCard key={repo.id} repo={repo} index={index} />
-              ))
-            ) : (
-              <div className="col-span-full text-center text-gray-400 py-12">
-                <p>Loading featured projects...</p>
-              </div>
-            )}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-            className="mt-12 text-center"
-          >
-            <Link
-              href="/projects"
-              className="inline-flex items-center text-[#38BDF8] hover:text-[#38BDF8]/80 transition-colors group"
-            >
-              View All Projects
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform" />
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Ecosystem Diagram Section */}
-      <section className="py-20 bg-[#1e293b]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            title="Our Ecosystem"
-            subtitle="Building a comprehensive suite of tools for modern infrastructure"
-            centered
-          />
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mt-12 relative"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                { title: "Infrastructure", desc: "Cloud-native tools and platforms", Icon: Server },
-                { title: "Development", desc: "Developer tools and frameworks", Icon: MonitorDot },
-                { title: "Analytics", desc: "Monitoring and insights", Icon: BarChart3 },
-              ].map((item, index) => (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
-                  className="p-8 rounded-xl card glass text-center hover:scale-105 transition-transform shine-on-hover glow-hover"
-                >
-                  <div className="flex items-center justify-center mb-4">
-                    <div className="w-16 h-16 rounded-full bg-[#38BDF8]/10 flex items-center justify-center">
-                      <item.Icon className="w-8 h-8 text-[#38BDF8]" />
-                    </div>
+            {/* Terminal-style Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 max-w-4xl mx-auto">
+              <motion.div 
+                className="relative group"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-lg blur-xl group-hover:blur-2xl transition-all"></div>
+                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-purple-500/30 rounded-lg p-6 hover:border-purple-500/60 transition-all">
+                  <div className="text-xs font-mono text-purple-400 mb-2">{">"} projects.length</div>
+                  <div className="text-3xl lg:text-4xl font-bold font-mono text-pink-400 mb-1">
+                    {totalStats.totalProjects}+
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-2">{item.title}</h3>
-                  <p className="text-gray-400">{item.desc}</p>
-                </motion.div>
-              ))}
+                  <div className="text-xs font-mono text-muted-foreground/70">// active repos</div>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                className="relative group"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-fuchsia-500/10 rounded-lg blur-xl group-hover:blur-2xl transition-all"></div>
+                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-pink-500/30 rounded-lg p-6 hover:border-pink-500/60 transition-all">
+                  <div className="text-xs font-mono text-pink-400 mb-2">{">"} stars.count()</div>
+                  <div className="text-3xl lg:text-4xl font-bold font-mono text-fuchsia-400 mb-1">
+                    {totalStats.totalStars.toLocaleString()}+
+                  </div>
+                  <div className="text-xs font-mono text-muted-foreground/70">// github stars</div>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                className="relative group"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-fuchsia-500/10 to-purple-500/10 rounded-lg blur-xl group-hover:blur-2xl transition-all"></div>
+                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-fuchsia-500/30 rounded-lg p-6 hover:border-fuchsia-500/60 transition-all">
+                  <div className="text-xs font-mono text-fuchsia-400 mb-2">{">"} contributors.size</div>
+                  <div className="text-3xl lg:text-4xl font-bold font-mono text-purple-400 mb-1">
+                    {totalStats.totalContributors}+
+                  </div>
+                  <div className="text-xs font-mono text-muted-foreground/70">// developers</div>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                className="relative group"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-lg blur-xl group-hover:blur-2xl transition-all"></div>
+                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-purple-500/30 rounded-lg p-6 hover:border-purple-500/60 transition-all">
+                  <div className="text-xs font-mono text-purple-400 mb-2">{">"} forks.total</div>
+                  <div className="text-3xl lg:text-4xl font-bold font-mono text-pink-400 mb-1">
+                    {totalStats.totalForks}+
+                  </div>
+                  <div className="text-xs font-mono text-muted-foreground/70">// contributions</div>
+                </div>
+              </motion.div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-b from-[#1e293b] to-[#0F172A]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* Features Section with Code Structure */}
+      <section className="py-24 bg-muted/30 relative overflow-hidden">
+        {/* Code grid background */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+
+        <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Join the TIVerse Community
+            {/* Code-style section header */}
+            <div className="inline-block mb-4">
+              <div className="flex items-center space-x-2 text-sm font-mono text-muted-foreground/70">
+                <span className="text-cyan-500">interface</span>
+                <span className="text-blue-500">Features</span>
+                <span className="text-muted-foreground">{"{"}</span>
+              </div>
+            </div>
+
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+              Why Choose TIVerse?
             </h2>
-            <p className="text-xl text-gray-400 mb-8">
-              Contribute to open-source, build innovative tools, and shape the future of infrastructure
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              <span className="font-mono text-emerald-500">{"// "}</span>
+              We believe in building tools that empower developers to create amazing things.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button href="/community" variant="primary" icon={Users}>
-                Join Community
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                viewport={{ once: true }}
+              >
+                <Card className="h-full hover:shadow-xl transition-all border-border/50 bg-background/50 backdrop-blur-sm group">
+                  <CardHeader>
+                    {/* Code bracket decoration */}
+                    <div className="flex items-start justify-between mb-3">
+                      <span className="text-xs font-mono text-muted-foreground/50">{"{"}</span>
+                      <span className="text-xs font-mono text-blue-500">0{index + 1}</span>
+                    </div>
+
+                    <div className="w-12 h-12 bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-lg flex items-center justify-center mb-4 group-hover:border-purple-500/40 transition-colors">
+                      <feature.icon className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+                    </div>
+                    <CardTitle className="font-mono">{feature.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">
+                      {feature.description}
+                    </CardDescription>
+                    <div className="mt-4">
+                      <span className="text-xs font-mono text-muted-foreground/50">{"}"}</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Closing bracket for interface */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mt-8"
+          >
+            <span className="text-sm font-mono text-muted-foreground/70">{"}"}</span>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Featured Projects with Terminal Theme */}
+      <section className="py-24 relative overflow-hidden">
+        {/* Subtle grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+
+        <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            {/* Terminal-style header */}
+            <div className="inline-flex items-center space-x-2 mb-4 px-4 py-2 bg-background/80 backdrop-blur-sm border border-border/50 rounded-lg">
+              <span className="text-xs font-mono text-cyan-500">class</span>
+              <span className="text-xs font-mono text-blue-500">FeaturedProjects</span>
+              <span className="text-xs font-mono text-muted-foreground">{"{ }"}</span>
+            </div>
+
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+              Featured Projects
+            </h2>
+            <div className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+              <span className="font-mono text-emerald-500">{"/* "}</span>
+              Discover our most popular open-source projects that are making a difference in the developer community. Live data from GitHub.
+              <span className="font-mono text-emerald-500">{" */"}</span>
+            </div>
+            <Button variant="outline" className="font-mono" asChild>
+              <Link href="/projects">
+                <span className="mr-2">$</span>
+                view --all-projects
+              </Link>
+            </Button>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.length > 0 ? projects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Link href={project.url} target="_blank" rel="noopener noreferrer">
+                  <Card className="h-full hover:shadow-xl transition-all border-border/50 bg-background/50 backdrop-blur-sm group cursor-pointer">
+                    <CardHeader>
+                      {/* Terminal window header */}
+                      <div className="flex items-center justify-between mb-3 pb-3 border-b border-border/30">
+                        <div className="flex items-center space-x-2">
+                          <div className="flex space-x-1">
+                            <div className="w-2 h-2 bg-red-400 rounded-full"></div>
+                            <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                            <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                          </div>
+                          <span className="text-xs font-mono text-muted-foreground/70">{project.name}.repo</span>
+                        </div>
+                        <Github className="h-4 w-4 text-muted-foreground group-hover:text-purple-600 transition-colors" />
+                      </div>
+
+                      <CardTitle className="font-mono text-lg group-hover:text-purple-600 transition-colors">
+                        {project.name}
+                      </CardTitle>
+                      <CardDescription className="text-sm">{project.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex items-center space-x-4 text-xs font-mono text-muted-foreground">
+                        <div className="flex items-center space-x-1.5">
+                          <div className={`w-2.5 h-2.5 rounded-full ${project.languageColor}`}></div>
+                          <span>{project.language}</span>
+                        </div>
+                        <div className="flex items-center space-x-1">
+                          <Star className="h-3.5 w-3.5" />
+                          <span>{project.stars.toLocaleString()}</span>
+                        </div>
+                        <div className="flex items-center space-x-1">
+                          <GitFork className="h-3.5 w-3.5" />
+                          <span>{project.forks}</span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </motion.div>
+            )) : (
+              [...Array(3)].map((_, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <Card className="h-full border-border/50 bg-background/50 backdrop-blur-sm">
+                    <CardHeader>
+                      <div className="flex items-center justify-between mb-3 pb-3 border-b border-border/30">
+                        <div className="flex items-center space-x-2">
+                          <div className="flex space-x-1">
+                            <div className="w-2 h-2 bg-muted rounded-full animate-pulse"></div>
+                            <div className="w-2 h-2 bg-muted rounded-full animate-pulse"></div>
+                            <div className="w-2 h-2 bg-muted rounded-full animate-pulse"></div>
+                          </div>
+                          <div className="h-3 bg-muted rounded w-20 animate-pulse"></div>
+                        </div>
+                        <Github className="h-4 w-4 text-muted-foreground" />
+                      </div>
+                      <div className="h-5 bg-muted rounded w-32 animate-pulse mb-2"></div>
+                      <div className="h-4 bg-muted rounded w-full animate-pulse"></div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex items-center space-x-4 text-xs font-mono text-muted-foreground">
+                        <div className="flex items-center space-x-1">
+                          <div className="w-2.5 h-2.5 rounded-full bg-muted animate-pulse"></div>
+                          <div className="h-3 bg-muted rounded w-12 animate-pulse"></div>
+                        </div>
+                        <div className="flex items-center space-x-1">
+                          <Star className="h-3.5 w-3.5" />
+                          <div className="h-3 bg-muted rounded w-6 animate-pulse"></div>
+                        </div>
+                        <div className="flex items-center space-x-1">
+                          <GitFork className="h-3.5 w-3.5" />
+                          <div className="h-3 bg-muted rounded w-4 animate-pulse"></div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section with Code Block Theme */}
+      <section className="relative py-24 overflow-hidden">
+        {/* Terminal-style gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-pink-500/20 to-fuchsia-500/20"></div>
+
+        {/* Code line numbers effect */}
+        <div className="absolute left-0 top-0 bottom-0 w-16 bg-slate-950/50 border-r border-slate-700/50 hidden lg:block">
+          <div className="flex flex-col items-end pr-4 pt-24 space-y-6 text-xs font-mono text-slate-600">
+            {[...Array(12)].map((_, i) => (
+              <div key={i}>{i + 1}</div>
+            ))}
+          </div>
+        </div>
+
+        <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center max-w-4xl mx-auto"
+          >
+            {/* Code-style CTA */}
+            <div className="mb-8 space-y-4">
+              <div className="flex items-start justify-center space-x-3 text-left">
+                <span className="text-sm font-mono text-emerald-400">{"// "}</span>
+                <div>
+                  <div className="text-sm font-mono text-cyan-400 mb-2">
+                    <span className="text-blue-400">function</span> buildAmazing() {"{"}
+                  </div>
+                </div>
+              </div>
+
+              <h2 className="text-3xl lg:text-5xl font-bold text-white mb-4 px-8">
+                Ready to Build Something Amazing?
+              </h2>
+
+              <div className="flex items-center justify-center space-x-2 text-sm font-mono">
+                <span className="text-emerald-400">{"/*"}</span>
+                <p className="text-lg lg:text-xl text-white/90 max-w-2xl leading-relaxed">
+                  Join thousands of developers who are already using TIVerse tools to build the next generation of applications.
+                </p>
+                <span className="text-emerald-400">{"*/"}</span>
+              </div>
+
+              <div className="flex items-start justify-center space-x-3 text-left mt-6">
+                <div className="text-sm font-mono text-cyan-400">
+                  {"}"};
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+              <Button size="lg" className="font-mono bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-xl group" asChild>
+                <Link href="/projects">
+                  <span className="mr-2">$</span>
+                  npm start
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </Button>
-              <Button href="/contribute" variant="secondary" icon={Github}>
-                Start Contributing
+              <Button size="lg" variant="outline" className="font-mono border-2 border-slate-400 text-white hover:bg-white hover:text-slate-900" asChild>
+                <Link href="/about">
+                  <span className="mr-2">{">"}</span>
+                  learn.more()
+                </Link>
               </Button>
+            </div>
+
+            {/* Terminal prompt at bottom */}
+            <div className="mt-12 inline-flex items-center space-x-2 px-4 py-2 bg-slate-950/50 backdrop-blur-sm border border-slate-700/50 rounded-lg">
+              <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+              <span className="text-xs font-mono text-emerald-400">tiverse@developer:~$</span>
+              <span className="text-xs font-mono text-slate-400 animate-pulse">_</span>
             </div>
           </motion.div>
         </div>

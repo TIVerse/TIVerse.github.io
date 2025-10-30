@@ -3,12 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+.pnp.js
 
 # testing
 /coverage
@@ -19,25 +14,19 @@
 
 # production
 /build
-/dist
 
 # misc
 .DS_Store
 *.pem
-Thumbs.db
 
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# local env files
+.env
+.env*.local
 
 # vercel
 .vercel
@@ -45,32 +34,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# IDE & Editor
-.idea/
-.vscode/
-*.swp
-*.swo
-*~
-.project
-.classpath
-.settings/
-*.sublime-project
-*.sublime-workspace
-
-# OS files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Biome
-.biome-cache/
-
-# Turbopack
-.turbo/
-SEO_*
-OG_IMAGE_INSTRUCTIONS.md
+.idea
