@@ -2,10 +2,9 @@ interface LogoProps {
   className?: string;
   size?: number;
   showText?: boolean;
-  variant?: 'light' | 'dark';
 }
 
-export function Logo({ className = "", size = 40, showText = true, variant = 'auto' }: LogoProps) {
+export function Logo({ className = "", size = 40, showText = true }: LogoProps) {
   return (
     <div className={`flex items-center space-x-3 ${className}`}>
       {/* SVG Logo */}
