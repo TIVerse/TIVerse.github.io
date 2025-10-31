@@ -11,19 +11,19 @@ import { fetchTIVerseRepos, type ProcessedProject } from '@/lib/github';
 
 const features = [
   {
-    icon: Code2,
-    title: 'Developer-First',
-    description: 'Tools built by developers, for developers. Every solution is crafted with the developer experience in mind.',
+    icon: Zap,
+    title: 'Blazing Performance',
+    description: 'Up to 50x faster with fastalloc memory pooling. High-performance parallel runtimes (veda-rs) with adaptive scheduling and work-stealing for maximum throughput.',
   },
   {
-    icon: Zap,
-    title: 'High Performance',
-    description: 'Optimized for speed and efficiency. Our tools are designed to handle real-world scale and complexity.',
+    icon: Code2,
+    title: 'Unified APIs',
+    description: 'VedaRT unifies Python\'s fragmented concurrency (threads, processes, asyncio, GPU) under one adaptive API. Rayon-compatible with enhanced telemetry.',
   },
   {
     icon: Shield,
-    title: 'Production Ready',
-    description: 'Battle-tested in production environments. Reliable, secure, and maintainable solutions you can trust.',
+    title: 'Production-Grade Tools',
+    description: 'Cross-platform Git sync (multigit), next-gen TUI frameworks (drav/rsdrav), memory-mapped I/O, and ML frameworks—all battle-tested and production-ready.',
   },
 ];
 
@@ -296,7 +296,7 @@ export default function Home() {
               <div className="flex items-start space-x-2">
                 <span className="text-emerald-500 font-mono">{"/*"}</span>
                 <p className="flex-1">
-                  Empowering developers with open-source tools that are performant, reliable, and built for the real world.
+                  High-performance infrastructure for AI, concurrency, memory management, and developer tooling. Built in Rust, Python, and Go.
                 </p>
                 <span className="text-emerald-500 font-mono">{"*/"}</span>
               </div>
@@ -533,7 +533,7 @@ export default function Home() {
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               <span className="font-mono text-emerald-500">{"// "}</span>
-              We believe in building tools that empower developers to create amazing things.
+              From memory pooling to ML frameworks, we build high-performance infrastructure tools that solve real problems at scale.
             </p>
           </motion.div>
 
