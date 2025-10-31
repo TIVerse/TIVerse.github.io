@@ -276,10 +276,10 @@ export default function Blog() {
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground tracking-tight leading-[1.1]">
                 Developer{" "}
                 <span className="relative inline-block">
-                  <span className="font-mono bg-gradient-to-r from-blue-600 via-cyan-500 to-emerald-500 bg-clip-text text-transparent">
+                  <span className="font-mono bg-gradient-to-r from-cyan-600 via-blue-500 to-orange-500 bg-clip-text text-transparent">
                     Insights
                   </span>
-                  <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-cyan-500 to-emerald-500 rounded-full"></span>
+                  <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-600 via-blue-500 to-orange-500 rounded-full"></span>
                 </span>
               </h1>
 
@@ -318,7 +318,7 @@ export default function Blog() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
             >
-              <Button size="lg" className="font-mono bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all group">
+              <Button size="lg" className="font-mono bg-gradient-to-r from-cyan-600 to-orange-600 hover:from-cyan-700 hover:to-orange-700 text-white shadow-lg hover:shadow-xl transition-all group">
                 <span className="mr-2">$</span>
                 cat latest_posts.md
                 <ChevronRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -626,13 +626,13 @@ export default function Blog() {
                           </div>
                           <span className="text-xs font-mono text-muted-foreground/70">{post.id.toString().padStart(2, '0')}.md</span>
                         </div>
-                        <Code className="h-4 w-4 text-muted-foreground group-hover:text-blue-600 transition-colors" />
+                        <Code className="h-4 w-4 text-muted-foreground group-hover:text-cyan-600 transition-colors" />
                       </div>
 
                       <Badge variant="secondary" className="w-fit mb-2 font-mono text-xs">
                         {post.category}
                       </Badge>
-                      <CardTitle className="text-lg font-mono group-hover:text-blue-600 transition-colors">
+                      <CardTitle className="text-lg font-mono group-hover:text-cyan-600 transition-colors">
                         {post.title}
                       </CardTitle>
 

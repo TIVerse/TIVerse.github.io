@@ -4,6 +4,7 @@ import { Fira_Code } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
+import { FounderPopup } from '@/components/founder-popup';
 
 const firaCode = Fira_Code({ 
   subsets: ['latin'],
@@ -51,6 +52,7 @@ export default function RootLayout({
             <Header />
             <main>{children}</main>
             <Footer />
+            <FounderPopup />
           </div>
         </ThemeProvider>
       </body>

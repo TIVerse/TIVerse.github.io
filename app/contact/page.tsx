@@ -144,10 +144,10 @@ export default function Contact() {
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground tracking-tight leading-[1.1]">
                 Get in{" "}
                 <span className="relative inline-block">
-                  <span className="font-mono bg-gradient-to-r from-blue-600 via-cyan-500 to-emerald-500 bg-clip-text text-transparent">
+                  <span className="font-mono bg-gradient-to-r from-cyan-600 via-blue-500 to-orange-500 bg-clip-text text-transparent">
                     Touch
                   </span>
-                  <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-cyan-500 to-emerald-500 rounded-full"></span>
+                  <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-600 via-blue-500 to-orange-500 rounded-full"></span>
                 </span>
               </h1>
 
@@ -186,7 +186,7 @@ export default function Contact() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
             >
-              <Button size="lg" className="font-mono bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all group">
+              <Button size="lg" className="font-mono bg-gradient-to-r from-cyan-600 to-orange-600 hover:from-cyan-700 hover:to-orange-700 text-white shadow-lg hover:shadow-xl transition-all group">
                 <span className="mr-2">$</span>
                 send --message
                 <ChevronRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -434,7 +434,7 @@ export default function Contact() {
                       />
                     </div>
 
-                    <Button type="submit" className="w-full font-mono bg-blue-600 hover:bg-blue-700">
+                    <Button type="submit" className="w-full font-mono bg-gradient-to-r from-cyan-600 to-orange-600 hover:from-cyan-700 hover:to-orange-700">
                       <span className="mr-2">$</span>
                       send --message
                       <Send className="ml-2 h-4 w-4" />
@@ -488,7 +488,7 @@ export default function Contact() {
                             </div>
                             <span className="text-xs font-mono text-muted-foreground/70">{reason.title}.ts</span>
                           </div>
-                          <reason.icon className="h-4 w-4 text-blue-600 group-hover:scale-110 transition-transform" />
+                          <reason.icon className="h-4 w-4 text-cyan-600 group-hover:scale-110 transition-transform" />
                         </div>
 
                         <div className="flex items-start space-x-3">
@@ -603,7 +603,7 @@ export default function Contact() {
         {/* Terminal-style gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-cyan-500/20 to-emerald-500/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-600/20 via-blue-500/20 to-orange-500/20"></div>
 
         {/* Code line numbers effect */}
         <div className="absolute left-0 top-0 bottom-0 w-16 bg-slate-950/50 border-r border-slate-700/50 hidden lg:block">
@@ -654,7 +654,7 @@ export default function Contact() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
-              <Button size="lg" className="font-mono bg-blue-600 hover:bg-blue-700 text-white shadow-xl group" asChild>
+              <Button size="lg" className="font-mono bg-gradient-to-r from-cyan-600 to-orange-600 hover:from-cyan-700 hover:to-orange-700 text-white shadow-xl group" asChild>
                 <Link href="mailto:hello@tiverse.dev">
                   <Mail className="mr-2 h-4 w-4" />
                   <span className="mr-2">$</span>

@@ -34,47 +34,47 @@ const values = [
 
 const milestones = [
   {
-    year: '2020',
+    year: 'Oct 19, 2025',
     title: 'git init',
-    description: 'TIVerse was founded with a vision to democratize access to high-quality infrastructure tools.',
+    description: 'TIVerse was founded with a vision to democratize access to high-quality infrastructure tools. Initial projects launched: Eclipsera ML framework and foundational infrastructure tools.',
     command: 'mkdir tiverse && cd tiverse',
     status: 'committed',
   },
   {
-    year: '2021',
-    title: 'first_release',
-    description: 'Launched our first open-source project, gaining 1000+ stars within the first month.',
-    command: 'git tag v1.0.0 && git push origin main',
+    year: 'Oct 20-21, 2025',
+    title: 'rapid_development',
+    description: 'Launched fastalloc (Rust memory pooling), veda-rs (parallel runtime), and multigit (multi-remote Git tool). Focus on performance-critical infrastructure.',
+    command: 'cargo new fastalloc && cargo publish',
     status: 'deployed',
   },
   {
-    year: '2022',
-    title: 'scale_up',
-    description: 'Reached 50+ contributors and 10,000+ monthly active users across all projects.',
-    command: 'npm run scale --production',
+    year: 'Oct 27, 2025',
+    title: 'ecosystem_expansion',
+    description: 'Released VedaRT (Python concurrency framework) and drav/rsdrav (terminal UI frameworks). Expanded into developer experience tools.',
+    command: 'git push origin main --all-repos',
+    status: 'active',
+  },
+  {
+    year: 'Oct 30, 2025',
+    title: 'web_presence',
+    description: 'Launched TIVerse.github.io official website showcasing our open-source ecosystem with 11 repositories spanning AI, infrastructure, and developer tools.',
+    command: 'npm run build && git push origin gh-pages',
     status: 'running',
   },
   {
-    year: '2023',
-    title: 'enterprise_adoption',
-    description: 'Major companies began adopting TIVerse tools in their production environments.',
-    command: 'docker deploy --env=production',
-    status: 'stable',
-  },
-  {
-    year: '2024',
-    title: 'global_impact',
-    description: 'Achieved 1M+ monthly downloads and established partnerships with leading tech companies.',
-    command: 'kubectl scale --replicas=global',
-    status: 'active',
+    year: 'Nov 2025',
+    title: 'community_growth',
+    description: 'Building our contributor community, refining documentation, and preparing for wider adoption. Focus on production-ready releases and community engagement.',
+    command: 'npm run community:engage',
+    status: 'in_progress',
   },
 ];
 
 const stats = [
-  { label: 'repositories', value: '50+', icon: GitBranch, color: 'text-blue-400' },
-  { label: 'github_stars', value: '10K+', icon: Code, color: 'text-cyan-400' },
-  { label: 'contributors', value: '100+', icon: Users, color: 'text-emerald-400' },
-  { label: 'downloads', value: '1M+', icon: Database, color: 'text-purple-400' },
+  { label: 'repositories', value: '11', icon: GitBranch, color: 'text-blue-400' },
+  { label: 'projects_launched', value: 'Oct 2025', icon: Code, color: 'text-cyan-400' },
+  { label: 'active_contributors', value: '3+', icon: Users, color: 'text-emerald-400' },
+  { label: 'languages', value: '4', icon: Database, color: 'text-purple-400' },
 ];
 
 export default function About() {
@@ -120,10 +120,10 @@ export default function About() {
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground tracking-tight leading-[1.1]">
                 About{" "}
                 <span className="relative inline-block">
-                  <span className="font-mono bg-gradient-to-r from-blue-600 via-cyan-500 to-emerald-500 bg-clip-text text-transparent">
+                  <span className="font-mono bg-gradient-to-r from-cyan-600 via-blue-500 to-orange-500 bg-clip-text text-transparent">
                     TIVerse
                   </span>
-                  <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-cyan-500 to-emerald-500 rounded-full"></span>
+                  <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-600 via-blue-500 to-orange-500 rounded-full"></span>
                 </span>
               </h1>
 
@@ -142,8 +142,8 @@ export default function About() {
               <div className="flex items-start space-x-2">
                 <span className="text-emerald-500 font-mono">{"/*"}</span>
                 <p className="flex-1">
-                  We're on a mission to build the infrastructure that powers the next generation of applications.
-                  Through open source, we're creating tools that are accessible, reliable, and built for scale.
+                  Founded in October 2025, we're building the infrastructure that powers the next generation of applications.
+                  Through rapid open-source innovation, we're creating performant tools across AI, concurrency, memory management, and developer experience.
                 </p>
                 <span className="text-emerald-500 font-mono">{"*/"}</span>
               </div>
@@ -177,7 +177,7 @@ export default function About() {
                       </div>
                       <span className="text-xs font-mono text-muted-foreground/70">mission.ts</span>
                     </div>
-                    <Target className="h-4 w-4 text-muted-foreground group-hover:text-blue-600 transition-colors" />
+                    <Target className="h-4 w-4 text-muted-foreground group-hover:text-cyan-600 transition-colors" />
                   </div>
 
                   <div className="mb-4">
@@ -218,7 +218,7 @@ export default function About() {
                       </div>
                       <span className="text-xs font-mono text-muted-foreground/70">vision.ts</span>
                     </div>
-                    <Eye className="h-4 w-4 text-muted-foreground group-hover:text-purple-600 transition-colors" />
+                    <Eye className="h-4 w-4 text-muted-foreground group-hover:text-orange-600 transition-colors" />
                   </div>
 
                   <div className="mb-4">
@@ -292,8 +292,8 @@ export default function About() {
                       <span className="text-xs font-mono text-blue-500">0{index + 1}</span>
                     </div>
 
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/20 rounded-lg flex items-center justify-center mb-4 group-hover:border-blue-500/40 transition-colors">
-                      <value.icon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-500/10 to-orange-500/10 border border-cyan-500/20 rounded-lg flex items-center justify-center mb-4 group-hover:border-cyan-500/40 transition-colors">
+                      <value.icon className="h-6 w-6 text-cyan-600 dark:text-cyan-400" />
                     </div>
                     
                     <CardTitle className="font-mono text-lg">{value.title}</CardTitle>
@@ -354,14 +354,14 @@ export default function About() {
             </h2>
             <div className="text-xl text-muted-foreground max-w-2xl mx-auto">
               <span className="font-mono text-emerald-500">{"/* "}</span>
-              From humble beginnings to a global community of developers building the future together.
+              Rapid innovation since October 2025. From initial commit to 11 production-ready open-source projects in weeks.
               <span className="font-mono text-emerald-500">{" */"}</span>
             </div>
           </motion.div>
 
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-cyan-400 to-emerald-500 transform md:-translate-x-px"></div>
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500 via-blue-400 to-orange-500 transform md:-translate-x-px"></div>
             
             <div className="space-y-12">
               {milestones.map((milestone, index) => (
@@ -376,7 +376,7 @@ export default function About() {
                   }`}
                 >
                   {/* Timeline dot */}
-                  <div className="absolute left-4 md:left-1/2 w-4 h-4 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full transform -translate-x-2 md:-translate-x-2 border-2 border-background shadow-lg"></div>
+                  <div className="absolute left-4 md:left-1/2 w-4 h-4 bg-gradient-to-br from-cyan-500 to-orange-400 rounded-full transform -translate-x-2 md:-translate-x-2 border-2 border-background shadow-lg"></div>
                   
                   {/* Content */}
                   <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
@@ -434,7 +434,7 @@ export default function About() {
         {/* Terminal-style gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-cyan-500/20 to-emerald-500/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-600/20 via-blue-500/20 to-orange-500/20"></div>
 
         {/* Code line numbers effect */}
         <div className="absolute left-0 top-0 bottom-0 w-16 bg-slate-950/50 border-r border-slate-700/50 hidden lg:block">
@@ -474,13 +474,13 @@ export default function About() {
               </div>
 
               <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-                Impact by the Numbers
+                By the Numbers
               </h2>
 
               <div className="flex items-center justify-center space-x-2 text-sm font-mono">
                 <span className="text-emerald-400">{"/*"}</span>
                 <p className="text-lg lg:text-xl text-white/90 max-w-2xl leading-relaxed">
-                  Our community continues to grow, and together we're making a real difference in the developer ecosystem.
+                  Building in public. A snapshot of our journey from inception to production-ready tools.
                 </p>
                 <span className="text-emerald-400">{"*/"}</span>
               </div>

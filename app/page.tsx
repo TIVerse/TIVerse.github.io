@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Github, Star, GitFork, Users, Code as Code2, Zap, Shield } from 'lucide-react';
+import { motion, useAnimation } from 'framer-motion';
+import { ArrowRight, Github, Star, GitFork, Users, Code as Code2, Zap, Shield, Terminal, Box, Circle, Triangle } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -27,6 +27,81 @@ const features = [
   },
 ];
 
+// Floating code snippets for background animation
+const floatingCodeSnippets = [
+  { code: 'const future = await build();', delay: 0, duration: 20, x: 10, y: 10 },
+  { code: 'function innovate() { }', delay: 2, duration: 25, x: 70, y: 20 },
+  { code: 'git commit -m "epic"', delay: 4, duration: 18, x: 30, y: 60 },
+  { code: 'npm run awesome', delay: 1, duration: 22, x: 80, y: 40 },
+  { code: 'cargo build --release', delay: 3, duration: 24, x: 20, y: 80 },
+  { code: 'let magic = true;', delay: 5, duration: 19, x: 60, y: 70 },
+];
+
+// Floating code snippet component
+const FloatingCodeSnippet = ({ code, delay, duration, x, y }: { code: string; delay: number; duration: number; x: number; y: number }) => {
+  return (
+    <motion.div
+      className="absolute text-xs font-mono text-cyan-500/20 dark:text-cyan-400/10 whitespace-nowrap pointer-events-none"
+      initial={{ 
+        x: `${x}%`, 
+        y: `${y}%`,
+        opacity: 0 
+      }}
+      animate={{
+        y: [`${y}%`, `${y - 30}%`, `${y}%`],
+        opacity: [0, 0.5, 0],
+      }}
+      transition={{
+        duration,
+        delay,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }}
+    >
+      {code}
+    </motion.div>
+  );
+};
+
+// Animated geometric shapes
+const AnimatedShape = ({ type, delay, x, y }: { type: 'circle' | 'square' | 'triangle'; delay: number; x: number; y: number }) => {
+  const randomRotation = Math.random() * 360;
+  
+  return (
+    <motion.div
+      className="absolute pointer-events-none"
+      initial={{ 
+        x: `${x}%`, 
+        y: `${y}%`,
+        rotate: randomRotation,
+        opacity: 0,
+        scale: 0
+      }}
+      animate={{
+        rotate: [randomRotation, randomRotation + 360],
+        opacity: [0, 0.15, 0],
+        scale: [0, 1, 0],
+      }}
+      transition={{
+        duration: 15,
+        delay,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }}
+    >
+      {type === 'circle' && (
+        <div className="w-16 h-16 rounded-full border-2 border-cyan-500/30 dark:border-cyan-400/20" />
+      )}
+      {type === 'square' && (
+        <div className="w-16 h-16 border-2 border-orange-500/30 dark:border-orange-400/20" />
+      )}
+      {type === 'triangle' && (
+        <div className="w-0 h-0 border-l-[32px] border-l-transparent border-r-[32px] border-r-transparent border-b-[56px] border-b-blue-500/30 dark:border-b-blue-400/20" />
+      )}
+    </motion.div>
+  );
+};
+
 export default function Home() {
   const [projects, setProjects] = useState<ProcessedProject[]>([]);
   const [totalStats, setTotalStats] = useState({
@@ -35,6 +110,23 @@ export default function Home() {
     totalForks: 0,
     totalContributors: 100, // Estimated
   });
+  const [typedText, setTypedText] = useState('');
+  const fullText = 'Open Source';
+  
+  // Typing animation effect
+  useEffect(() => {
+    let currentIndex = 0;
+    const typingInterval = setInterval(() => {
+      if (currentIndex <= fullText.length) {
+        setTypedText(fullText.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(typingInterval);
+      }
+    }, 150);
+    
+    return () => clearInterval(typingInterval);
+  }, []);
 
   useEffect(() => {
     async function loadProjects() {
@@ -67,10 +159,54 @@ export default function Home() {
         {/* Grid pattern background */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
-        {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-background to-pink-50/30 dark:from-purple-950 dark:via-background dark:to-pink-950"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(192,132,252,0.15),transparent_50%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(192,132,252,0.2),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(244,114,182,0.12),transparent_50%)] dark:bg-[radial-gradient(circle_at_70%_80%,rgba(244,114,182,0.18),transparent_50%)]"></div>
+        {/* Animated Gradient overlays */}
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-br from-cyan-50 via-background to-orange-50/30 dark:from-cyan-950 dark:via-background dark:to-orange-950"
+          animate={{
+            backgroundPosition: ['0% 0%', '100% 100%'],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            repeatType: 'reverse',
+          }}
+        />
+        <motion.div 
+          className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(34,211,238,0.15),transparent_50%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(34,211,238,0.2),transparent_50%)]"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.5, 0.8, 0.5],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+        <motion.div 
+          className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(251,146,60,0.12),transparent_50%)] dark:bg-[radial-gradient(circle_at_70%_80%,rgba(251,146,60,0.18),transparent_50%)]"
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.4, 0.7, 0.4],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+        
+        {/* Floating code snippets */}
+        {floatingCodeSnippets.map((snippet, index) => (
+          <FloatingCodeSnippet key={index} {...snippet} />
+        ))}
+        
+        {/* Animated geometric shapes */}
+        <AnimatedShape type="circle" delay={0} x={15} y={20} />
+        <AnimatedShape type="square" delay={2} x={85} y={15} />
+        <AnimatedShape type="triangle" delay={4} x={25} y={75} />
+        <AnimatedShape type="circle" delay={6} x={75} y={65} />
+        <AnimatedShape type="square" delay={8} x={50} y={50} />
 
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40">
           <div className="text-center max-w-5xl mx-auto">
@@ -112,14 +248,19 @@ export default function Home() {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.4, type: "spring", stiffness: 100 }}
                   >
-                    <span className="font-mono bg-gradient-to-r from-purple-600 via-pink-500 to-fuchsia-500 bg-clip-text text-transparent animate-pulse">
-                      Open Source
+                    <span className="font-mono bg-gradient-to-r from-cyan-600 via-blue-500 to-orange-500 bg-clip-text text-transparent">
+                      {typedText}
+                      <motion.span
+                        animate={{ opacity: [1, 0] }}
+                        transition={{ duration: 0.8, repeat: Infinity, repeatType: 'reverse' }}
+                        className="inline-block w-0.5 h-12 ml-1 bg-gradient-to-b from-cyan-600 to-orange-500 align-middle"
+                      />
                     </span>
                     <motion.span 
-                      className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-600 via-pink-500 to-fuchsia-500 rounded-full"
+                      className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-600 via-blue-500 to-orange-500 rounded-full"
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
-                      transition={{ duration: 0.8, delay: 0.6 }}
+                      transition={{ duration: 0.8, delay: 1.8 }}
                       style={{ transformOrigin: 'left' }}
                     ></motion.span>
                   </motion.span>
@@ -154,36 +295,79 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
             >
-              {/* Terminal-style buttons */}
-              <Button size="lg" className="font-mono bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg hover:shadow-xl transition-all group" asChild>
-                <Link href="/projects">
-                  <span className="mr-2">$</span>
-                  explore --projects
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" className="font-mono border-2 hover:bg-accent" asChild>
-                <Link href="https://github.com/tiverse" target="_blank" rel="noopener noreferrer">
-                  <Github className="mr-2 h-4 w-4" />
-                  git clone github
-                </Link>
-              </Button>
+              {/* Terminal-style buttons with enhanced animations */}
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button size="lg" className="font-mono bg-gradient-to-r from-cyan-600 to-orange-600 hover:from-cyan-700 hover:to-orange-700 text-white shadow-lg hover:shadow-xl transition-all group relative overflow-hidden" asChild>
+                  <Link href="/projects">
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0"
+                      animate={{
+                        x: ['-100%', '200%'],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatDelay: 1,
+                      }}
+                    />
+                    <span className="mr-2 relative z-10">$</span>
+                    <span className="relative z-10">explore --projects</span>
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform relative z-10" />
+                  </Link>
+                </Button>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button size="lg" variant="outline" className="font-mono border-2 hover:bg-accent group" asChild>
+                  <Link href="https://github.com/tiverse" target="_blank" rel="noopener noreferrer">
+                    <Github className="mr-2 h-4 w-4 group-hover:rotate-12 transition-transform" />
+                    git clone github
+                  </Link>
+                </Button>
+              </motion.div>
             </motion.div>
 
-            {/* Terminal-style Stats */}
+            {/* Terminal-style Stats with enhanced animations */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 max-w-4xl mx-auto">
               <motion.div 
                 className="relative group"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
+                whileHover={{ y: -5 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-lg blur-xl group-hover:blur-2xl transition-all"></div>
-                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-purple-500/30 rounded-lg p-6 hover:border-purple-500/60 transition-all">
-                  <div className="text-xs font-mono text-purple-400 mb-2">{">"} projects.length</div>
-                  <div className="text-3xl lg:text-4xl font-bold font-mono text-pink-400 mb-1">
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-lg blur-xl"
+                  animate={{
+                    scale: [1, 1.1, 1],
+                    opacity: [0.5, 0.8, 0.5],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                  }}
+                />
+                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-cyan-500/30 rounded-lg p-6 hover:border-cyan-500/60 transition-all">
+                  <motion.div 
+                    className="text-xs font-mono text-cyan-400 mb-2"
+                    animate={{ opacity: [0.7, 1, 0.7] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    {">"}  projects.length
+                  </motion.div>
+                  <motion.div 
+                    className="text-3xl lg:text-4xl font-bold font-mono text-orange-400 mb-1"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: 'spring', stiffness: 200, delay: 0.6 }}
+                  >
                     {totalStats.totalProjects}+
-                  </div>
+                  </motion.div>
                   <div className="text-xs font-mono text-muted-foreground/70">// active repos</div>
                 </div>
               </motion.div>
@@ -193,13 +377,36 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
+                whileHover={{ y: -5 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-fuchsia-500/10 rounded-lg blur-xl group-hover:blur-2xl transition-all"></div>
-                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-pink-500/30 rounded-lg p-6 hover:border-pink-500/60 transition-all">
-                  <div className="text-xs font-mono text-pink-400 mb-2">{">"} stars.count()</div>
-                  <div className="text-3xl lg:text-4xl font-bold font-mono text-fuchsia-400 mb-1">
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-amber-500/10 rounded-lg blur-xl"
+                  animate={{
+                    scale: [1, 1.1, 1],
+                    opacity: [0.5, 0.8, 0.5],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    delay: 0.5,
+                  }}
+                />
+                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-orange-500/30 rounded-lg p-6 hover:border-orange-500/60 transition-all">
+                  <motion.div 
+                    className="text-xs font-mono text-orange-400 mb-2"
+                    animate={{ opacity: [0.7, 1, 0.7] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
+                  >
+                    {">"}  stars.count()
+                  </motion.div>
+                  <motion.div 
+                    className="text-3xl lg:text-4xl font-bold font-mono text-amber-400 mb-1"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: 'spring', stiffness: 200, delay: 0.7 }}
+                  >
                     {totalStats.totalStars.toLocaleString()}+
-                  </div>
+                  </motion.div>
                   <div className="text-xs font-mono text-muted-foreground/70">// github stars</div>
                 </div>
               </motion.div>
@@ -209,13 +416,36 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
+                whileHover={{ y: -5 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-fuchsia-500/10 to-purple-500/10 rounded-lg blur-xl group-hover:blur-2xl transition-all"></div>
-                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-fuchsia-500/30 rounded-lg p-6 hover:border-fuchsia-500/60 transition-all">
-                  <div className="text-xs font-mono text-fuchsia-400 mb-2">{">"} contributors.size</div>
-                  <div className="text-3xl lg:text-4xl font-bold font-mono text-purple-400 mb-1">
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-lg blur-xl"
+                  animate={{
+                    scale: [1, 1.1, 1],
+                    opacity: [0.5, 0.8, 0.5],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    delay: 1,
+                  }}
+                />
+                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-blue-500/30 rounded-lg p-6 hover:border-blue-500/60 transition-all">
+                  <motion.div 
+                    className="text-xs font-mono text-blue-400 mb-2"
+                    animate={{ opacity: [0.7, 1, 0.7] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
+                  >
+                    {">"}  contributors.size
+                  </motion.div>
+                  <motion.div 
+                    className="text-3xl lg:text-4xl font-bold font-mono text-cyan-400 mb-1"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: 'spring', stiffness: 200, delay: 0.8 }}
+                  >
                     {totalStats.totalContributors}+
-                  </div>
+                  </motion.div>
                   <div className="text-xs font-mono text-muted-foreground/70">// developers</div>
                 </div>
               </motion.div>
@@ -225,13 +455,36 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
+                whileHover={{ y: -5 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-lg blur-xl group-hover:blur-2xl transition-all"></div>
-                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-purple-500/30 rounded-lg p-6 hover:border-purple-500/60 transition-all">
-                  <div className="text-xs font-mono text-purple-400 mb-2">{">"} forks.total</div>
-                  <div className="text-3xl lg:text-4xl font-bold font-mono text-pink-400 mb-1">
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-amber-500/10 rounded-lg blur-xl"
+                  animate={{
+                    scale: [1, 1.1, 1],
+                    opacity: [0.5, 0.8, 0.5],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    delay: 1.5,
+                  }}
+                />
+                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-orange-500/30 rounded-lg p-6 hover:border-orange-500/60 transition-all">
+                  <motion.div 
+                    className="text-xs font-mono text-orange-400 mb-2"
+                    animate={{ opacity: [0.7, 1, 0.7] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 0.9 }}
+                  >
+                    {">"}  forks.total
+                  </motion.div>
+                  <motion.div 
+                    className="text-3xl lg:text-4xl font-bold font-mono text-amber-400 mb-1"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: 'spring', stiffness: 200, delay: 0.9 }}
+                  >
                     {totalStats.totalForks}+
-                  </div>
+                  </motion.div>
                   <div className="text-xs font-mono text-muted-foreground/70">// contributions</div>
                 </div>
               </motion.div>
@@ -288,8 +541,8 @@ export default function Home() {
                       <span className="text-xs font-mono text-blue-500">0{index + 1}</span>
                     </div>
 
-                    <div className="w-12 h-12 bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-lg flex items-center justify-center mb-4 group-hover:border-purple-500/40 transition-colors">
-                      <feature.icon className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-500/10 to-orange-500/10 border border-cyan-500/20 rounded-lg flex items-center justify-center mb-4 group-hover:border-cyan-500/40 transition-colors">
+                      <feature.icon className="h-6 w-6 text-cyan-600 dark:text-cyan-400" />
                     </div>
                     <CardTitle className="font-mono">{feature.title}</CardTitle>
                   </CardHeader>
@@ -377,10 +630,10 @@ export default function Home() {
                           </div>
                           <span className="text-xs font-mono text-muted-foreground/70">{project.name}.repo</span>
                         </div>
-                        <Github className="h-4 w-4 text-muted-foreground group-hover:text-purple-600 transition-colors" />
+                        <Github className="h-4 w-4 text-muted-foreground group-hover:text-cyan-600 transition-colors" />
                       </div>
 
-                      <CardTitle className="font-mono text-lg group-hover:text-purple-600 transition-colors">
+                      <CardTitle className="font-mono text-lg group-hover:text-cyan-600 transition-colors">
                         {project.name}
                       </CardTitle>
                       <CardDescription className="text-sm">{project.description}</CardDescription>
@@ -458,7 +711,7 @@ export default function Home() {
         {/* Terminal-style gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-pink-500/20 to-fuchsia-500/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-600/20 via-blue-500/20 to-orange-500/20"></div>
 
         {/* Code line numbers effect */}
         <div className="absolute left-0 top-0 bottom-0 w-16 bg-slate-950/50 border-r border-slate-700/50 hidden lg:block">
@@ -508,7 +761,7 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
-              <Button size="lg" className="font-mono bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-xl group" asChild>
+              <Button size="lg" className="font-mono bg-gradient-to-r from-cyan-600 to-orange-600 hover:from-cyan-700 hover:to-orange-700 text-white shadow-xl group" asChild>
                 <Link href="/projects">
                   <span className="mr-2">$</span>
                   npm start
