@@ -29,27 +29,32 @@ const features = [
 
 // Floating code snippets for background animation
 const floatingCodeSnippets = [
-  { code: 'const future = await build();', delay: 0, duration: 20, x: 10, y: 10 },
-  { code: 'function innovate() { }', delay: 2, duration: 25, x: 70, y: 20 },
-  { code: 'git commit -m "epic"', delay: 4, duration: 18, x: 30, y: 60 },
-  { code: 'npm run awesome', delay: 1, duration: 22, x: 80, y: 40 },
-  { code: 'cargo build --release', delay: 3, duration: 24, x: 20, y: 80 },
-  { code: 'let magic = true;', delay: 5, duration: 19, x: 60, y: 70 },
+  { code: 'const future = await build();', delay: 0, duration: 20, x: 5, y: 15 },
+  { code: 'function innovate() { }', delay: 2, duration: 25, x: 75, y: 25 },
+  { code: 'git commit -m "epic"', delay: 4, duration: 18, x: 20, y: 65 },
+  { code: 'npm run awesome', delay: 1, duration: 22, x: 85, y: 45 },
+  { code: 'cargo build --release', delay: 3, duration: 24, x: 10, y: 85 },
+  { code: 'let magic = true;', delay: 5, duration: 19, x: 65, y: 75 },
+  { code: 'async/await magic', delay: 6, duration: 21, x: 40, y: 35 },
+  { code: 'import { innovation }', delay: 7, duration: 23, x: 90, y: 60 },
 ];
 
 // Floating code snippet component
 const FloatingCodeSnippet = ({ code, delay, duration, x, y }: { code: string; delay: number; duration: number; x: number; y: number }) => {
   return (
     <motion.div
-      className="absolute text-xs font-mono text-cyan-500/20 dark:text-cyan-400/10 whitespace-nowrap pointer-events-none"
+      className="absolute text-sm font-mono text-cyan-600/40 dark:text-cyan-400/30 whitespace-nowrap pointer-events-none"
+      style={{
+        left: `${x}%`,
+        top: `${y}%`,
+      }}
       initial={{ 
-        x: `${x}%`, 
-        y: `${y}%`,
-        opacity: 0 
+        opacity: 0,
+        y: 0
       }}
       animate={{
-        y: [`${y}%`, `${y - 30}%`, `${y}%`],
-        opacity: [0, 0.5, 0],
+        y: [0, -50, 0],
+        opacity: [0, 0.8, 0],
       }}
       transition={{
         duration,
@@ -70,16 +75,18 @@ const AnimatedShape = ({ type, delay, x, y }: { type: 'circle' | 'square' | 'tri
   return (
     <motion.div
       className="absolute pointer-events-none"
+      style={{
+        left: `${x}%`,
+        top: `${y}%`,
+      }}
       initial={{ 
-        x: `${x}%`, 
-        y: `${y}%`,
         rotate: randomRotation,
         opacity: 0,
         scale: 0
       }}
       animate={{
         rotate: [randomRotation, randomRotation + 360],
-        opacity: [0, 0.15, 0],
+        opacity: [0, 0.4, 0],
         scale: [0, 1, 0],
       }}
       transition={{
@@ -90,13 +97,13 @@ const AnimatedShape = ({ type, delay, x, y }: { type: 'circle' | 'square' | 'tri
       }}
     >
       {type === 'circle' && (
-        <div className="w-16 h-16 rounded-full border-2 border-cyan-500/30 dark:border-cyan-400/20" />
+        <div className="w-20 h-20 rounded-full border-2 border-cyan-500/60 dark:border-cyan-400/40" />
       )}
       {type === 'square' && (
-        <div className="w-16 h-16 border-2 border-orange-500/30 dark:border-orange-400/20" />
+        <div className="w-20 h-20 border-2 border-orange-500/60 dark:border-orange-400/40" />
       )}
       {type === 'triangle' && (
-        <div className="w-0 h-0 border-l-[32px] border-l-transparent border-r-[32px] border-r-transparent border-b-[56px] border-b-blue-500/30 dark:border-b-blue-400/20" />
+        <div className="w-0 h-0 border-l-[40px] border-l-transparent border-r-[40px] border-r-transparent border-b-[70px] border-b-blue-500/60 dark:border-b-blue-400/40" />
       )}
     </motion.div>
   );
@@ -157,11 +164,11 @@ export default function Home() {
       {/* Hero Section with Code Terminal Aesthetic */}
       <section className="relative overflow-hidden">
         {/* Grid pattern background */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
         {/* Animated Gradient overlays */}
         <motion.div 
-          className="absolute inset-0 bg-gradient-to-br from-cyan-50 via-background to-orange-50/30 dark:from-cyan-950 dark:via-background dark:to-orange-950"
+          className="absolute inset-0 z-[1] bg-gradient-to-br from-cyan-50 via-background to-orange-50/30 dark:from-cyan-950 dark:via-background dark:to-orange-950"
           animate={{
             backgroundPosition: ['0% 0%', '100% 100%'],
           }}
@@ -172,10 +179,10 @@ export default function Home() {
           }}
         />
         <motion.div 
-          className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(34,211,238,0.15),transparent_50%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(34,211,238,0.2),transparent_50%)]"
+          className="absolute inset-0 z-[2] bg-[radial-gradient(circle_at_30%_20%,rgba(34,211,238,0.25),transparent_50%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(34,211,238,0.3),transparent_50%)]"
           animate={{
             scale: [1, 1.2, 1],
-            opacity: [0.5, 0.8, 0.5],
+            opacity: [0.6, 1, 0.6],
           }}
           transition={{
             duration: 8,
@@ -184,10 +191,10 @@ export default function Home() {
           }}
         />
         <motion.div 
-          className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(251,146,60,0.12),transparent_50%)] dark:bg-[radial-gradient(circle_at_70%_80%,rgba(251,146,60,0.18),transparent_50%)]"
+          className="absolute inset-0 z-[2] bg-[radial-gradient(circle_at_70%_80%,rgba(251,146,60,0.2),transparent_50%)] dark:bg-[radial-gradient(circle_at_70%_80%,rgba(251,146,60,0.25),transparent_50%)]"
           animate={{
             scale: [1, 1.3, 1],
-            opacity: [0.4, 0.7, 0.4],
+            opacity: [0.5, 0.9, 0.5],
           }}
           transition={{
             duration: 10,
@@ -197,18 +204,24 @@ export default function Home() {
         />
         
         {/* Floating code snippets */}
-        {floatingCodeSnippets.map((snippet, index) => (
-          <FloatingCodeSnippet key={index} {...snippet} />
-        ))}
+        <div className="absolute inset-0 z-[3]">
+          {floatingCodeSnippets.map((snippet, index) => (
+            <FloatingCodeSnippet key={index} {...snippet} />
+          ))}
+        </div>
         
         {/* Animated geometric shapes */}
-        <AnimatedShape type="circle" delay={0} x={15} y={20} />
-        <AnimatedShape type="square" delay={2} x={85} y={15} />
-        <AnimatedShape type="triangle" delay={4} x={25} y={75} />
-        <AnimatedShape type="circle" delay={6} x={75} y={65} />
-        <AnimatedShape type="square" delay={8} x={50} y={50} />
+        <div className="absolute inset-0 z-[3]">
+          <AnimatedShape type="circle" delay={0} x={12} y={18} />
+          <AnimatedShape type="square" delay={2} x={88} y={12} />
+          <AnimatedShape type="triangle" delay={4} x={22} y={78} />
+          <AnimatedShape type="circle" delay={6} x={78} y={68} />
+          <AnimatedShape type="square" delay={8} x={45} y={42} />
+          <AnimatedShape type="triangle" delay={10} x={60} y={28} />
+          <AnimatedShape type="circle" delay={12} x={35} y={85} />
+        </div>
 
-        <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40">
+        <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40">
           <div className="text-center max-w-5xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
