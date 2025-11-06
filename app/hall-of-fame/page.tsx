@@ -36,13 +36,69 @@ export default function HallOfFame() {
 
   const fetchContributors = async () => {
     try {
-      const response = await fetch('/api/contributors');
-      if (response.ok) {
-        const data = await response.json();
-        setContributorsData(data);
-      } else {
-        setError('Failed to fetch contributors');
+      // Get GitHub token from environment if available
+      const githubToken = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
+      
+      const headers: HeadersInit = {
+        'Accept': 'application/vnd.github.v3+json',
+        'User-Agent': 'TIVerse-Website',
+      };
+
+      // Add authorization header if token is available
+      if (githubToken) {
+        headers['Authorization'] = `Bearer ${githubToken}`;
       }
+
+      // Fetch repositories from TIVerse organization
+      const reposResponse = await fetch(
+        'https://api.github.com/orgs/TIVerse/repos?per_page=100',
+        { headers }
+      );
+
+      if (!reposResponse.ok) {
+        throw new Error(`Failed to fetch repositories: ${reposResponse.status}`);
+      }
+
+      const repos = await reposResponse.json();
+
+      // Fetch contributors from each repository
+      const contributorsMap = new Map<string, Contributor>();
+
+      await Promise.all(
+        repos.map(async (repo: { name: string }) => {
+          try {
+            const contributorsResponse = await fetch(
+              `https://api.github.com/repos/TIVerse/${repo.name}/contributors?per_page=100`,
+              { headers }
+            );
+
+            if (contributorsResponse.ok) {
+              const repoContributors: Contributor[] = await contributorsResponse.json();
+              
+              repoContributors.forEach((contributor) => {
+                const existing = contributorsMap.get(contributor.login);
+                if (existing) {
+                  existing.contributions += contributor.contributions;
+                } else {
+                  contributorsMap.set(contributor.login, { ...contributor });
+                }
+              });
+            }
+          } catch (error) {
+            console.error(`Error fetching contributors for ${repo.name}:`, error);
+          }
+        })
+      );
+
+      // Convert map to array and sort by contributions
+      const contributors = Array.from(contributorsMap.values())
+        .sort((a, b) => b.contributions - a.contributions);
+
+      setContributorsData({
+        contributors,
+        totalContributors: contributors.length,
+        totalRepos: repos.length,
+      });
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch contributors');
     } finally {
