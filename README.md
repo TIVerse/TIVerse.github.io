@@ -198,9 +198,16 @@ npm install next-plausible
 Create a `.env.local` file for local development:
 
 ```env
-# Optional: Add any environment-specific variables
+# GitHub API Token (Optional but recommended to avoid rate limiting)
+# Create a personal access token at https://github.com/settings/tokens
+# No special permissions needed for public repository access
+GITHUB_TOKEN=your_github_token_here
+
+# Site Configuration
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
+
+**Note**: The GitHub token is optional but highly recommended for the Hall of Fame page. Without it, the GitHub API has a rate limit of 60 requests/hour. With a token, you get 5000 requests/hour. You can create a token at [https://github.com/settings/tokens](https://github.com/settings/tokens) - no special permissions are needed for accessing public repositories.
 
 ### SEO Configuration
 
