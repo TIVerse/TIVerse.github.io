@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Github, Twitter, Terminal, Code as Code2, Brackets, ChevronRight, Trophy } from 'lucide-react';
+import { Menu, X, Github, Twitter, Terminal, Code as Code2, Brackets, ChevronRight, Trophy, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Logo } from '@/components/logo';
@@ -14,6 +14,7 @@ const navigation = [
   { name: 'Home', href: '/', icon: Terminal },
   { name: 'About', href: '/about', icon: Code2 },
   { name: 'Projects', href: '/projects', icon: Brackets },
+  { name: 'R&D', href: '/research', icon: BookOpen },
   { name: 'Hall of Fame', href: '/hall-of-fame', icon: Trophy },
   { name: 'Blog', href: '/blog', icon: Terminal },
   { name: 'Contact', href: '/contact', icon: ChevronRight },
