@@ -93,10 +93,10 @@ export default function Projects() {
         {/* Grid pattern background */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
-        {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-background to-blue-50/30 dark:from-slate-950 dark:via-background dark:to-slate-900"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent_50%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.15),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(16,185,129,0.08),transparent_50%)] dark:bg-[radial-gradient(circle_at_70%_80%,rgba(16,185,129,0.12),transparent_50%)]"></div>
+        {/* Gradient overlays - Vibrant */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-background via-purple-50/30 to-teal-50/30 dark:from-blue-950 dark:via-background dark:via-purple-950/30 dark:to-teal-950/30"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(96,165,250,0.15),transparent_50%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(96,165,250,0.2),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(167,139,250,0.1),transparent_50%)] dark:bg-[radial-gradient(circle_at_70%_80%,rgba(167,139,250,0.15),transparent_50%)]"></div>
 
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40">
           <motion.div
@@ -106,11 +106,11 @@ export default function Projects() {
             className="text-center"
           >
             {/* Terminal-style status badge */}
-            <div className="inline-flex items-center space-x-3 mb-6 px-4 py-2 bg-background/80 backdrop-blur-sm border border-border/50 rounded-lg shadow-lg">
+            <div className="inline-flex items-center space-x-3 mb-6 px-4 py-2 bg-background/80 backdrop-blur-sm border border-border/50 rounded-lg shadow-lg glow-blue">
               <div className="flex space-x-1.5">
-                <div className="w-2.5 h-2.5 bg-red-400 rounded-full"></div>
-                <div className="w-2.5 h-2.5 bg-yellow-400 rounded-full"></div>
-                <div className="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse"></div>
+                <div className="w-2.5 h-2.5 bg-gradient-to-r from-red-400 to-red-500 rounded-full shadow-lg shadow-red-400/50"></div>
+                <div className="w-2.5 h-2.5 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full shadow-lg shadow-yellow-400/50"></div>
+                <div className="w-2.5 h-2.5 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full animate-pulse shadow-lg shadow-emerald-400/50"></div>
               </div>
               <span className="text-xs font-mono text-muted-foreground">projects.repository.tsx</span>
             </div>
@@ -119,7 +119,7 @@ export default function Projects() {
             <div className="mb-6 space-y-2">
               <div className="text-left max-w-fit mx-auto">
                 <span className="text-sm font-mono text-muted-foreground/70">1 </span>
-                <span className="text-sm font-mono text-cyan-500">const</span>
+                <span className="text-sm font-mono text-blue-500">const</span>
                 <span className="text-sm font-mono text-foreground"> projects = await </span>
                 <span className="text-sm font-mono text-purple-500">fetchRepos</span>
                 <span className="text-sm font-mono text-foreground">();</span>
@@ -128,16 +128,16 @@ export default function Projects() {
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground tracking-tight leading-[1.1]">
                 Open Source{" "}
                 <span className="relative inline-block">
-                  <span className="font-mono bg-gradient-to-r from-cyan-600 via-blue-500 to-orange-500 bg-clip-text text-transparent">
+                  <span className="font-mono bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 bg-clip-text text-transparent">
                     Projects
                   </span>
-                  <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-600 via-blue-500 to-orange-500 rounded-full"></span>
+                  <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 rounded-full"></span>
                 </span>
               </h1>
 
               <div className="text-left max-w-fit mx-auto">
                 <span className="text-sm font-mono text-muted-foreground/70">2 </span>
-                <span className="text-sm font-mono text-cyan-500">return</span>
+                <span className="text-sm font-mono text-blue-500">return</span>
                 <span className="text-sm font-mono text-foreground"> projects.</span>
                 <span className="text-sm font-mono text-purple-500">filter</span>
                 <span className="text-sm font-mono text-foreground">(</span>
@@ -170,7 +170,7 @@ export default function Projects() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
             >
-              <Button size="lg" className="font-mono bg-gradient-to-r from-cyan-600 to-orange-600 hover:from-cyan-700 hover:to-orange-700 text-white shadow-lg hover:shadow-xl transition-all group">
+              <Button size="lg" className="font-mono bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 hover:from-blue-700 hover:via-purple-700 hover:to-teal-700 text-white shadow-lg hover:shadow-xl transition-all group glow-blue">
                 <span className="mr-2">$</span>
                 git clone --recursive
                 <ChevronRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -192,9 +192,9 @@ export default function Projects() {
             >
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-lg blur-xl group-hover:blur-2xl transition-all"></div>
-                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-blue-500/30 rounded-lg p-6 hover:border-blue-500/60 transition-all">
+                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-blue-500/30 rounded-lg p-6 hover:border-blue-500/60 transition-all glow-blue">
                   <div className="text-xs font-mono text-blue-400 mb-2">{">"} repos.length</div>
-                  <div className="text-3xl lg:text-4xl font-bold font-mono text-cyan-400 mb-1">
+                  <div className="text-3xl lg:text-4xl font-bold font-mono text-purple-400 mb-1">
                     {projects.length}+
                   </div>
                   <div className="text-xs font-mono text-muted-foreground/70">// repositories</div>
@@ -202,10 +202,10 @@ export default function Projects() {
               </div>
 
               <div className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-emerald-500/10 rounded-lg blur-xl group-hover:blur-2xl transition-all"></div>
-                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-cyan-500/30 rounded-lg p-6 hover:border-cyan-500/60 transition-all">
-                  <div className="text-xs font-mono text-cyan-400 mb-2">{">"} stars.total()</div>
-                  <div className="text-3xl lg:text-4xl font-bold font-mono text-emerald-400 mb-1">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-teal-500/10 rounded-lg blur-xl group-hover:blur-2xl transition-all"></div>
+                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-purple-500/30 rounded-lg p-6 hover:border-purple-500/60 transition-all glow-purple">
+                  <div className="text-xs font-mono text-purple-400 mb-2">{">"} stars.total()</div>
+                  <div className="text-3xl lg:text-4xl font-bold font-mono text-teal-400 mb-1">
                     {projects.reduce((acc, p) => acc + p.stars, 0).toLocaleString()}+
                   </div>
                   <div className="text-xs font-mono text-muted-foreground/70">// github stars</div>
@@ -213,10 +213,10 @@ export default function Projects() {
               </div>
 
               <div className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-blue-500/10 rounded-lg blur-xl group-hover:blur-2xl transition-all"></div>
-                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-emerald-500/30 rounded-lg p-6 hover:border-emerald-500/60 transition-all">
-                  <div className="text-xs font-mono text-emerald-400 mb-2">{">"} languages.count</div>
-                  <div className="text-3xl lg:text-4xl font-bold font-mono text-blue-400 mb-1">
+                <div className="absolute inset-0 bg-gradient-to-br from-teal-500/10 to-emerald-500/10 rounded-lg blur-xl group-hover:blur-2xl transition-all"></div>
+                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-teal-500/30 rounded-lg p-6 hover:border-teal-500/60 transition-all glow-teal">
+                  <div className="text-xs font-mono text-teal-400 mb-2">{">"} languages.count</div>
+                  <div className="text-3xl lg:text-4xl font-bold font-mono text-emerald-400 mb-1">
                     {languages.length - 1}+
                   </div>
                   <div className="text-xs font-mono text-muted-foreground/70">// languages</div>
@@ -225,9 +225,9 @@ export default function Projects() {
 
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-emerald-500/10 rounded-lg blur-xl group-hover:blur-2xl transition-all"></div>
-                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-blue-500/30 rounded-lg p-6 hover:border-blue-500/60 transition-all">
+                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-blue-500/30 rounded-lg p-6 hover:border-blue-500/60 transition-all glow-blue">
                   <div className="text-xs font-mono text-blue-400 mb-2">{">"} forks.sum()</div>
-                  <div className="text-3xl lg:text-4xl font-bold font-mono text-cyan-400 mb-1">
+                  <div className="text-3xl lg:text-4xl font-bold font-mono text-purple-400 mb-1">
                     {projects.reduce((acc, p) => acc + p.forks, 0)}+
                   </div>
                   <div className="text-xs font-mono text-muted-foreground/70">// contributions</div>
