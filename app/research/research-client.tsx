@@ -36,21 +36,21 @@ export default function ResearchClientPage({ initialDocuments }: Props) {
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-background to-blue-50/30 dark:from-slate-950 dark:via-background dark:to-slate-900"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-background via-purple-50/30 to-teal-50/30 dark:from-blue-950 dark:via-background dark:via-purple-950/30 dark:to-teal-950/30"></div>
 
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center">
-            <div className="inline-flex items-center space-x-3 mb-6 px-4 py-2 bg-background/80 backdrop-blur-sm border border-border/50 rounded-lg shadow-lg">
+            <div className="inline-flex items-center space-x-3 mb-6 px-4 py-2 bg-background/80 backdrop-blur-sm border border-border/50 rounded-lg shadow-lg glow-blue">
               <div className="flex space-x-1.5">
-                <div className="w-2.5 h-2.5 bg-red-400 rounded-full"></div>
-                <div className="w-2.5 h-2.5 bg-yellow-400 rounded-full"></div>
-                <div className="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse"></div>
+                <div className="w-2.5 h-2.5 bg-gradient-to-r from-red-400 to-red-500 rounded-full shadow-lg shadow-red-400/50"></div>
+                <div className="w-2.5 h-2.5 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full shadow-lg shadow-yellow-400/50"></div>
+                <div className="w-2.5 h-2.5 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full animate-pulse shadow-lg shadow-emerald-400/50"></div>
               </div>
               <span className="text-xs font-mono text-muted-foreground">research_and_development.tsx</span>
             </div>
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground mb-6">
-              R&D <span className="font-mono bg-gradient-to-r from-cyan-600 via-blue-500 to-orange-500 bg-clip-text text-transparent">Research</span>
+              R&D <span className="font-mono bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 bg-clip-text text-transparent">Research</span>
             </h1>
 
             <p className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-3xl mx-auto">
@@ -67,10 +67,10 @@ export default function ResearchClientPage({ initialDocuments }: Props) {
                 { label: 'open_access', value: '100%', color: 'blue' },
               ].map((stat) => (
                 <div key={stat.label} className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-lg blur-xl"></div>
-                  <div className="relative bg-slate-900/90 backdrop-blur-sm border border-blue-500/30 rounded-lg p-6">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-lg blur-xl"></div>
+                  <div className="relative bg-slate-900/90 backdrop-blur-sm border border-blue-500/30 rounded-lg p-6 glow-blue">
                     <div className="text-xs font-mono text-blue-400 mb-2">{">"} {stat.label}</div>
-                    <div className="text-3xl font-bold font-mono text-cyan-400">{stat.value}</div>
+                    <div className="text-3xl font-bold font-mono text-purple-400">{stat.value}</div>
                   </div>
                 </div>
               ))}
