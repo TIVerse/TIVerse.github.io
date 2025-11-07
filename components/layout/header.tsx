@@ -45,8 +45,8 @@ export function Header() {
           : 'bg-transparent'
       )}
     >
-      {/* Code-style top border */}
-      <div className="h-1 bg-gradient-to-r from-cyan-500 via-blue-400 to-orange-500"></div>
+      {/* Code-style top border - Vibrant gradient */}
+      <div className="h-1 bg-gradient-to-r from-blue-400 via-purple-400 via-cyan-400 to-teal-400 animate-gradient"></div>
       
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -81,21 +81,21 @@ export function Header() {
                       className={cn(
                         'group relative flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium font-mono transition-all duration-300',
                         isActive
-                          ? 'text-cyan-600 bg-cyan-50/80 dark:text-cyan-400 dark:bg-cyan-950/50 shadow-sm'
-                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                          ? 'text-blue-600 bg-blue-50/80 dark:text-blue-400 dark:bg-blue-950/50 shadow-sm glow-blue'
+                          : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
                       )}
                     >
                       {/* Code bracket indicator */}
                       <span className={cn(
                         'text-xs transition-colors duration-300',
-                        isActive ? 'text-cyan-500' : 'text-muted-foreground/50 group-hover:text-muted-foreground'
+                        isActive ? 'text-blue-500' : 'text-muted-foreground/50 group-hover:text-muted-foreground'
                       )}>
                         {'{'}
                       </span>
                       
                       <Icon className={cn(
                         'h-4 w-4 transition-colors duration-300',
-                        isActive ? 'text-cyan-500' : 'text-muted-foreground/70 group-hover:text-foreground'
+                        isActive ? 'text-blue-500' : 'text-muted-foreground/70 group-hover:text-foreground'
                       )} />
                       
                       <span className="relative">
@@ -104,7 +104,7 @@ export function Header() {
                         {isActive && (
                           <motion.div
                             layoutId="activeTab"
-                            className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500 to-orange-400 rounded-full"
+                            className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 rounded-full"
                             initial={false}
                             transition={{ type: "spring", stiffness: 500, damping: 30 }}
                           />
@@ -113,13 +113,13 @@ export function Header() {
                       
                       <span className={cn(
                         'text-xs transition-colors duration-300',
-                        isActive ? 'text-cyan-500' : 'text-muted-foreground/50 group-hover:text-muted-foreground'
+                        isActive ? 'text-blue-500' : 'text-muted-foreground/50 group-hover:text-muted-foreground'
                       )}>
                         {'}'}
                       </span>
                       
                       {/* Hover effect */}
-                      <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-cyan-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+                      <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-teal-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
                     </Link>
                   </motion.div>
                 );
@@ -130,8 +130,8 @@ export function Header() {
           {/* Right side with terminal-style elements */}
           <div className="hidden md:flex items-center space-x-3">
             {/* Status indicator */}
-            <div className="flex items-center space-x-2 px-3 py-1.5 bg-muted/50 rounded-lg border border-border/50">
-              <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+            <div className="flex items-center space-x-2 px-3 py-1.5 bg-muted/50 rounded-lg border border-border/50 backdrop-blur-sm">
+              <div className="w-2 h-2 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50"></div>
               <span className="text-xs font-mono text-muted-foreground">online</span>
             </div>
             
@@ -140,7 +140,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-9 w-9 hover:bg-cyan-50 hover:text-cyan-600 dark:hover:bg-cyan-950 transition-colors"
+                className="h-9 w-9 hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-blue-950 dark:hover:text-blue-400 transition-all hover:glow-blue"
                 asChild
               >
                 <Link
@@ -154,7 +154,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-9 w-9 hover:bg-orange-50 hover:text-orange-600 dark:hover:bg-orange-950 transition-colors"
+                className="h-9 w-9 hover:bg-purple-50 hover:text-purple-600 dark:hover:bg-purple-950 dark:hover:text-purple-400 transition-all hover:glow-purple"
                 asChild
               >
                 <Link
@@ -250,21 +250,21 @@ export function Header() {
                         className={cn(
                           'flex items-center space-x-3 px-3 py-2.5 rounded-md text-base font-medium font-mono transition-all duration-300',
                           isActive
-                            ? 'text-cyan-600 bg-cyan-50/80 dark:text-cyan-400 dark:bg-cyan-950/50'
-                            : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                            ? 'text-blue-600 bg-blue-50/80 dark:text-blue-400 dark:bg-blue-950/50 glow-blue'
+                            : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
                         )}
                         onClick={() => setIsOpen(false)}
                       >
                         <span className={cn(
                           'text-sm',
-                          isActive ? 'text-cyan-500' : 'text-muted-foreground/50'
+                          isActive ? 'text-blue-500' : 'text-muted-foreground/50'
                         )}>
                           $
                         </span>
                         <Icon className="h-4 w-4" />
                         <span>{item.name.toLowerCase()}</span>
                         {isActive && (
-                          <div className="ml-auto w-2 h-2 bg-cyan-500 rounded-full"></div>
+                          <div className="ml-auto w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse shadow-lg shadow-blue-400/50"></div>
                         )}
                       </Link>
                     </motion.div>
