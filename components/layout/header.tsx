@@ -16,7 +16,6 @@ const navigation = [
   { name: 'Projects', href: '/projects', icon: Brackets },
   { name: 'R&D', href: '/research', icon: BookOpen },
   { name: 'Hall of Fame', href: '/hall-of-fame', icon: Trophy },
-  { name: 'Blog', href: '/blog', icon: Terminal },
   { name: 'Contact', href: '/contact', icon: ChevronRight },
 ];
 

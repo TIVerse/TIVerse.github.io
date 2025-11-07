@@ -31,7 +31,6 @@ A modern, production-ready website for TIVerse, showcasing our open-source ecosy
 tiverse-website/
 ├── app/                    # Next.js App Router
 │   ├── about/             # About page
-│   ├── blog/              # Blog listing
 │   ├── contact/           # Contact form
 │   ├── projects/          # Projects showcase
 │   ├── research/          # R&D research papers
@@ -102,7 +101,7 @@ The website uses TIVerse's signature color palette defined in `tailwind.config.t
 ### Content Updates
 
 - **Projects**: Update the projects array in `app/projects/page.tsx`
-- **Blog Posts**: Add new posts to the blogPosts array in `app/blog/page.tsx`
+- **Research Papers**: Add markdown files to `research-documents/` directory
 - **Company Info**: Modify content in `app/about/page.tsx`
 
 ### Styling
@@ -114,25 +113,6 @@ The website uses Tailwind CSS with custom design tokens. Key styling files:
 - `components.json` - Shadcn/UI configuration
 
 ## 📝 Adding Content
-
-### New Blog Post
-
-Add a new post object to the `blogPosts` array in `app/blog/page.tsx`:
-
-```typescript
-{
-  id: 7,
-  title: 'Your Post Title',
-  excerpt: 'Brief description...',
-  content: 'Full content...',
-  author: 'TIVerse Team',
-  date: '2024-01-20',
-  readTime: '5 min read',
-  category: 'Development',
-  tags: ['tag1', 'tag2'],
-  featured: false,
-}
-```
 
 ### New Project
 
