@@ -271,8 +271,8 @@ export function MarkdownRenderer({ content, showTOC = true, className }: Markdow
                   </code>
                 );
               },
-              pre: ({ node, ...props }) => (
-                <div {...props} />
+              pre: ({ node, children, ...props }) => (
+                <>{children}</>
               ),
               table: ({ node, ...props }) => (
                 <div className="my-8 overflow-x-auto rounded-xl border-2 border-border/50 shadow-lg">
@@ -297,8 +297,9 @@ export function MarkdownRenderer({ content, showTOC = true, className }: Markdow
               hr: ({ node, ...props }) => (
                 <hr className="my-8 border-border/50" {...props} />
               ),
-              img: ({ node, ...props }) => (
-                <img className="my-6 rounded-lg border border-border/50 max-w-full h-auto" {...props} />
+              img: ({ node, alt, ...props }) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img className="my-6 rounded-lg border border-border/50 max-w-full h-auto" alt={alt || ''} {...props} />
               ),
             }}
           >
