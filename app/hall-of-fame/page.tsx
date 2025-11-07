@@ -121,7 +121,7 @@ export default function HallOfFame() {
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-background to-purple-50/30 dark:from-slate-950 dark:via-background dark:to-purple-900/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-background via-purple-50/30 to-teal-50/30 dark:from-blue-950 dark:via-background dark:via-purple-950/30 dark:to-teal-950/30"></div>
         
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <motion.div
@@ -141,7 +141,7 @@ export default function HallOfFame() {
               </div>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-amber-500 via-purple-600 to-blue-600">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-600 to-teal-500">
               Hall of Fame
             </h1>
             
@@ -157,7 +157,7 @@ export default function HallOfFame() {
                   transition={{ delay: 0.2 }}
                   className="text-center"
                 >
-                  <div className="text-4xl font-bold text-amber-500">
+                  <div className="text-4xl font-bold text-blue-500">
                     {contributorsData.totalContributors}
                   </div>
                   <div className="text-sm text-muted-foreground font-mono">Total Contributors</div>
@@ -181,7 +181,7 @@ export default function HallOfFame() {
                   transition={{ delay: 0.4 }}
                   className="text-center"
                 >
-                  <div className="text-4xl font-bold text-blue-500">
+                  <div className="text-4xl font-bold text-teal-500">
                     {contributorsData.totalRepos}
                   </div>
                   <div className="text-sm text-muted-foreground font-mono">Active Repositories</div>

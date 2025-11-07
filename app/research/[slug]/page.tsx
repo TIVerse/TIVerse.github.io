@@ -18,11 +18,11 @@ export default async function ResearchDocumentPage({ params }: { params: { slug:
   return (
     <div className="pt-16 min-h-screen">
       {/* Hero Header with Paper Texture */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
+      <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white via-purple-50/30 to-teal-50/30 dark:from-blue-950 dark:via-slate-900 dark:via-purple-950/30 dark:to-teal-950/30">
         {/* Animated Background Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.05),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(16,185,129,0.05),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(96,165,250,0.08),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(167,139,250,0.08),transparent_50%)]"></div>
         
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <Link href="/research">
@@ -36,7 +36,7 @@ export default async function ResearchDocumentPage({ params }: { params: { slug:
           <div className="max-w-5xl mx-auto">
             <Card className="border-2 border-border/50 shadow-2xl bg-background/95 backdrop-blur-sm overflow-hidden">
               {/* Decorative Header Bar */}
-              <div className="h-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500"></div>
+              <div className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500"></div>
               
               <div className="p-8 md:p-12">
                 {/* Status Badges */}
@@ -71,7 +71,7 @@ export default async function ResearchDocumentPage({ params }: { params: { slug:
                       key={index}
                       className="flex items-center gap-2 px-4 py-2 bg-accent/50 rounded-lg border border-border/50 hover:bg-accent transition-colors"
                     >
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center text-white font-bold text-sm">
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-sm">
                         {author.charAt(0)}
                       </div>
                       <span className="font-medium text-sm">{author}</span>
