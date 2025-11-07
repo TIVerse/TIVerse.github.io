@@ -68,20 +68,20 @@ export function Footer() {
       {/* Code grid background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b12_1px,transparent_1px),linear-gradient(to_bottom,#1e293b12_1px,transparent_1px)] bg-[size:32px_32px]"></div>
       
-      {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 via-slate-950 to-cyan-950/20"></div>
+      {/* Gradient overlays - Vibrant */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-950/30 via-slate-950 via-purple-950/20 to-teal-950/30"></div>
       
-      {/* Terminal-style top border */}
-      <div className="h-1 bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-500"></div>
+      {/* Terminal-style top border - Vibrant gradient */}
+      <div className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 via-teal-500 to-emerald-500"></div>
 
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Terminal Header */}
         <div className="mb-12">
-          <div className="inline-flex items-center space-x-3 mb-6 px-4 py-2 bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 rounded-lg">
+          <div className="inline-flex items-center space-x-3 mb-6 px-4 py-2 bg-slate-900/80 backdrop-blur-sm border border-blue-500/30 rounded-lg glow-blue">
             <div className="flex space-x-1.5">
-              <div className="w-2.5 h-2.5 bg-red-400 rounded-full"></div>
-              <div className="w-2.5 h-2.5 bg-yellow-400 rounded-full"></div>
-              <div className="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse"></div>
+              <div className="w-2.5 h-2.5 bg-gradient-to-r from-red-400 to-red-500 rounded-full shadow-lg shadow-red-400/50"></div>
+              <div className="w-2.5 h-2.5 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full shadow-lg shadow-yellow-400/50"></div>
+              <div className="w-2.5 h-2.5 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full animate-pulse shadow-lg shadow-emerald-400/50"></div>
             </div>
             <span className="text-xs font-mono text-slate-400">footer.component.tsx</span>
           </div>
@@ -109,16 +109,16 @@ export function Footer() {
 
               {/* Status indicators */}
               <div className="flex flex-wrap gap-3">
-                <div className="flex items-center space-x-2 px-3 py-1.5 bg-slate-900/60 border border-slate-700/50 rounded-lg">
-                  <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                <div className="flex items-center space-x-2 px-3 py-1.5 bg-slate-900/60 border border-emerald-500/30 rounded-lg hover:border-emerald-500/60 transition-all hover:glow-blue">
+                  <div className="w-2 h-2 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full animate-pulse shadow-lg shadow-emerald-400/50"></div>
                   <span className="text-xs font-mono text-slate-400">status: active</span>
                 </div>
-                <div className="flex items-center space-x-2 px-3 py-1.5 bg-slate-900/60 border border-slate-700/50 rounded-lg">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                <div className="flex items-center space-x-2 px-3 py-1.5 bg-slate-900/60 border border-blue-500/30 rounded-lg hover:border-blue-500/60 transition-all hover:glow-blue">
+                  <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-blue-500 rounded-full shadow-lg shadow-blue-400/50"></div>
                   <span className="text-xs font-mono text-slate-400">build: passing</span>
                 </div>
-                <div className="flex items-center space-x-2 px-3 py-1.5 bg-slate-900/60 border border-slate-700/50 rounded-lg">
-                  <div className="w-2 h-2 bg-cyan-400 rounded-full"></div>
+                <div className="flex items-center space-x-2 px-3 py-1.5 bg-slate-900/60 border border-purple-500/30 rounded-lg hover:border-purple-500/60 transition-all hover:glow-purple">
+                  <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-purple-500 rounded-full shadow-lg shadow-purple-400/50"></div>
                   <span className="text-xs font-mono text-slate-400">version: 2024.1</span>
                 </div>
               </div>
@@ -127,9 +127,9 @@ export function Footer() {
             {/* Social Links with Terminal Style */}
             <div className="lg:text-right">
               <div className="mb-4">
-                <span className="text-sm font-mono text-cyan-400">const</span>
+                <span className="text-sm font-mono text-blue-400">const</span>
                 <span className="text-sm font-mono text-slate-300"> socialLinks = </span>
-                <span className="text-sm font-mono text-yellow-400">{"["}</span>
+                <span className="text-sm font-mono text-purple-400">{"["}</span>
               </div>
               
               <div className="space-y-3 mb-4">
@@ -162,7 +162,7 @@ export function Footer() {
                 ))}
               </div>
               
-              <div className="text-sm font-mono text-yellow-400 lg:text-right">
+              <div className="text-sm font-mono text-purple-400 lg:text-right">
                 {"];"}
               </div>
             </div>
@@ -176,7 +176,7 @@ export function Footer() {
               {/* Section header with code syntax */}
               <div className="flex items-center space-x-2 mb-4">
                 <span className="text-sm font-mono text-purple-400">interface</span>
-                <span className="text-sm font-mono text-cyan-400 capitalize">{section.title}</span>
+                <span className="text-sm font-mono text-blue-400 capitalize">{section.title}</span>
                 <span className="text-sm font-mono text-slate-500">{"{"}</span>
               </div>
 
@@ -193,8 +193,8 @@ export function Footer() {
                         <span className="text-slate-600 text-xs">
                           {String(index + 1).padStart(2, '0')}
                         </span>
-                        {Icon && <Icon className="h-3 w-3 text-slate-500 group-hover:text-cyan-400 transition-colors" />}
-                        <span className="group-hover:text-cyan-400 transition-colors">
+                        {Icon && <Icon className="h-3 w-3 text-slate-500 group-hover:text-blue-400 transition-colors" />}
+                        <span className="group-hover:text-blue-400 transition-colors">
                           {item.name}
                         </span>
                         <span className="text-slate-600">;</span>
@@ -212,20 +212,20 @@ export function Footer() {
 
         {/* Terminal Command Line */}
         <div className="mb-8">
-          <div className="bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 rounded-lg p-4">
+          <div className="bg-slate-900/80 backdrop-blur-sm border border-blue-500/30 rounded-lg p-4 glow-blue">
             <div className="flex items-center space-x-2 mb-2">
-              <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+              <div className="w-2 h-2 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full animate-pulse shadow-lg shadow-emerald-400/50"></div>
               <span className="text-xs font-mono text-emerald-400">tiverse@developer</span>
               <span className="text-xs font-mono text-slate-500">:</span>
               <span className="text-xs font-mono text-blue-400">~/projects</span>
               <span className="text-xs font-mono text-slate-400">$</span>
             </div>
             <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
-              <span className="text-cyan-400">npm</span>
+              <span className="text-blue-400">npm</span>
               <span className="text-slate-300">install</span>
-              <span className="text-yellow-400">@tiverse/tools</span>
+              <span className="text-purple-400">@tiverse/tools</span>
               <span className="text-slate-500">--save</span>
-              <div className="w-2 h-4 bg-slate-400 animate-pulse ml-1"></div>
+              <div className="w-2 h-4 bg-gradient-to-b from-blue-400 to-purple-400 animate-pulse ml-1"></div>
             </div>
           </div>
         </div>
@@ -255,10 +255,10 @@ export function Footer() {
             </div>
 
             {/* Version info */}
-            <div className="flex items-center space-x-2 px-3 py-1.5 bg-slate-900/60 border border-slate-700/50 rounded-lg">
+            <div className="flex items-center space-x-2 px-3 py-1.5 bg-slate-900/60 border border-purple-500/30 rounded-lg hover:border-purple-500/60 transition-all hover:glow-purple">
               <span className="text-xs font-mono text-slate-500">v</span>
-              <span className="text-xs font-mono text-cyan-400">2024.1.0</span>
-              <div className="w-1 h-1 bg-emerald-400 rounded-full"></div>
+              <span className="text-xs font-mono text-blue-400">2024.1.0</span>
+              <div className="w-1 h-1 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full shadow-lg shadow-emerald-400/50"></div>
             </div>
           </div>
         </div>
