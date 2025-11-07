@@ -23,13 +23,13 @@ export function Logo({ className = "", size = 40, showText = true }: LogoProps) 
             <stop offset="100%" stopColor="#0f172a" />
           </linearGradient>
           <linearGradient id={`accentGradient-${size}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#22d3ee" />
-            <stop offset="50%" stopColor="#3b82f6" />
-            <stop offset="100%" stopColor="#fb923c" />
+            <stop offset="0%" stopColor="#60a5fa" />
+            <stop offset="50%" stopColor="#a78bfa" />
+            <stop offset="100%" stopColor="#5eead4" />
           </linearGradient>
           <linearGradient id={`innerGradient-${size}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#22d3ee" />
-            <stop offset="100%" stopColor="#fb923c" />
+            <stop offset="0%" stopColor="#60a5fa" />
+            <stop offset="100%" stopColor="#a78bfa" />
           </linearGradient>
         </defs>
         
@@ -93,7 +93,7 @@ export function Logo({ className = "", size = 40, showText = true }: LogoProps) 
           cx="82" 
           cy="18" 
           r="6" 
-          fill="#fb923c"
+          fill="#5eead4"
           className="animate-pulse"
         />
       </svg>
@@ -101,7 +101,7 @@ export function Logo({ className = "", size = 40, showText = true }: LogoProps) 
       {/* Text */}
       {showText && (
         <div className="flex flex-col">
-          <span className="text-xl font-bold font-mono bg-gradient-to-r from-cyan-600 via-blue-500 to-orange-500 bg-clip-text text-transparent">
+          <span className="text-xl font-bold font-mono bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 bg-clip-text text-transparent">
             TIVerse
           </span>
           <span className="text-xs font-mono text-muted-foreground/70 -mt-1">
