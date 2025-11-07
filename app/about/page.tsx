@@ -85,9 +85,9 @@ export default function About() {
         {/* Grid pattern background */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
-        {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-background to-blue-50/30 dark:from-slate-950 dark:via-background dark:to-slate-900"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent_50%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.15),transparent_50%)]"></div>
+        {/* Gradient overlays - Vibrant */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-background via-purple-50/30 to-teal-50/30 dark:from-blue-950 dark:via-background dark:via-purple-950/30 dark:to-teal-950/30"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(96,165,250,0.15),transparent_50%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(96,165,250,0.2),transparent_50%)]"></div>
 
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40">
           <motion.div
@@ -97,11 +97,11 @@ export default function About() {
             className="text-center"
           >
             {/* Terminal-style status badge */}
-            <div className="inline-flex items-center space-x-3 mb-6 px-4 py-2 bg-background/80 backdrop-blur-sm border border-border/50 rounded-lg shadow-lg">
+            <div className="inline-flex items-center space-x-3 mb-6 px-4 py-2 bg-background/80 backdrop-blur-sm border border-border/50 rounded-lg shadow-lg glow-blue">
               <div className="flex space-x-1.5">
-                <div className="w-2.5 h-2.5 bg-red-400 rounded-full"></div>
-                <div className="w-2.5 h-2.5 bg-yellow-400 rounded-full"></div>
-                <div className="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse"></div>
+                <div className="w-2.5 h-2.5 bg-gradient-to-r from-red-400 to-red-500 rounded-full shadow-lg shadow-red-400/50"></div>
+                <div className="w-2.5 h-2.5 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full shadow-lg shadow-yellow-400/50"></div>
+                <div className="w-2.5 h-2.5 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full animate-pulse shadow-lg shadow-emerald-400/50"></div>
               </div>
               <span className="text-xs font-mono text-muted-foreground">about.component.tsx</span>
             </div>
@@ -110,9 +110,9 @@ export default function About() {
             <div className="mb-6 space-y-2">
               <div className="text-left max-w-fit mx-auto">
                 <span className="text-sm font-mono text-muted-foreground/70">1 </span>
-                <span className="text-sm font-mono text-cyan-500">class</span>
+                <span className="text-sm font-mono text-blue-500">class</span>
                 <span className="text-sm font-mono text-foreground"> TIVerse </span>
-                <span className="text-sm font-mono text-yellow-500">extends</span>
+                <span className="text-sm font-mono text-purple-500">extends</span>
                 <span className="text-sm font-mono text-foreground"> Innovation </span>
                 <span className="text-sm font-mono text-muted-foreground">{"{"}</span>
               </div>
@@ -120,10 +120,10 @@ export default function About() {
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground tracking-tight leading-[1.1]">
                 About{" "}
                 <span className="relative inline-block">
-                  <span className="font-mono bg-gradient-to-r from-cyan-600 via-blue-500 to-orange-500 bg-clip-text text-transparent">
+                  <span className="font-mono bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 bg-clip-text text-transparent">
                     TIVerse
                   </span>
-                  <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-600 via-blue-500 to-orange-500 rounded-full"></span>
+                  <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 rounded-full"></span>
                 </span>
               </h1>
 
@@ -177,12 +177,12 @@ export default function About() {
                       </div>
                       <span className="text-xs font-mono text-muted-foreground/70">mission.ts</span>
                     </div>
-                    <Target className="h-4 w-4 text-muted-foreground group-hover:text-cyan-600 transition-colors" />
+                    <Target className="h-4 w-4 text-muted-foreground group-hover:text-blue-600 transition-colors" />
                   </div>
 
                   <div className="mb-4">
                     <div className="text-xs font-mono text-muted-foreground/70 mb-2">
-                      <span className="text-cyan-500">const</span> mission = {"{"}
+                      <span className="text-blue-500">const</span> mission = {"{"}
                     </div>
                     <CardTitle className="text-2xl font-mono ml-4">our_mission</CardTitle>
                   </div>
@@ -218,7 +218,7 @@ export default function About() {
                       </div>
                       <span className="text-xs font-mono text-muted-foreground/70">vision.ts</span>
                     </div>
-                    <Eye className="h-4 w-4 text-muted-foreground group-hover:text-orange-600 transition-colors" />
+                    <Eye className="h-4 w-4 text-muted-foreground group-hover:text-purple-600 transition-colors" />
                   </div>
 
                   <div className="mb-4">
@@ -260,7 +260,7 @@ export default function About() {
             {/* Code-style section header */}
             <div className="inline-block mb-4">
               <div className="flex items-center space-x-2 text-sm font-mono text-muted-foreground/70">
-                <span className="text-cyan-500">interface</span>
+                <span className="text-blue-500">interface</span>
                 <span className="text-blue-500">CoreValues</span>
                 <span className="text-muted-foreground">{"{"}</span>
               </div>
@@ -292,8 +292,8 @@ export default function About() {
                       <span className="text-xs font-mono text-blue-500">0{index + 1}</span>
                     </div>
 
-                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-500/10 to-orange-500/10 border border-cyan-500/20 rounded-lg flex items-center justify-center mb-4 group-hover:border-cyan-500/40 transition-colors">
-                      <value.icon className="h-6 w-6 text-cyan-600 dark:text-cyan-400" />
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-lg flex items-center justify-center mb-4 group-hover:border-blue-500/40 transition-colors glow-blue">
+                      <value.icon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
                     </div>
                     
                     <CardTitle className="font-mono text-lg">{value.title}</CardTitle>
@@ -344,7 +344,7 @@ export default function About() {
           >
             {/* Terminal-style header */}
             <div className="inline-flex items-center space-x-2 mb-4 px-4 py-2 bg-background/80 backdrop-blur-sm border border-border/50 rounded-lg">
-              <span className="text-xs font-mono text-cyan-500">git</span>
+              <span className="text-xs font-mono text-blue-500">git</span>
               <span className="text-xs font-mono text-blue-500">log</span>
               <span className="text-xs font-mono text-muted-foreground">--oneline</span>
             </div>
@@ -361,7 +361,7 @@ export default function About() {
 
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500 via-blue-400 to-orange-500 transform md:-translate-x-px"></div>
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-teal-500 transform md:-translate-x-px"></div>
             
             <div className="space-y-12">
               {milestones.map((milestone, index) => (
@@ -376,7 +376,7 @@ export default function About() {
                   }`}
                 >
                   {/* Timeline dot */}
-                  <div className="absolute left-4 md:left-1/2 w-4 h-4 bg-gradient-to-br from-cyan-500 to-orange-400 rounded-full transform -translate-x-2 md:-translate-x-2 border-2 border-background shadow-lg"></div>
+                  <div className="absolute left-4 md:left-1/2 w-4 h-4 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full transform -translate-x-2 md:-translate-x-2 border-2 border-background shadow-lg glow-blue"></div>
                   
                   {/* Content */}
                   <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
@@ -403,7 +403,7 @@ export default function About() {
                         </div>
 
                         <div className="flex items-center space-x-2 mb-2">
-                          <span className="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-600 text-sm font-semibold font-mono rounded-full">
+                          <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 text-sm font-semibold font-mono rounded-full">
                             {milestone.year}
                           </span>
                         </div>
@@ -412,7 +412,7 @@ export default function About() {
                         {/* Command line */}
                         <div className="mt-3 p-2 bg-slate-900/20 dark:bg-slate-950/40 rounded border font-mono text-xs">
                           <span className="text-emerald-400">$ </span>
-                          <span className="text-cyan-400">{milestone.command}</span>
+                          <span className="text-blue-400">{milestone.command}</span>
                         </div>
                       </CardHeader>
                       <CardContent>
@@ -434,7 +434,7 @@ export default function About() {
         {/* Terminal-style gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-cyan-600/20 via-blue-500/20 to-orange-500/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-500/20 to-teal-500/20"></div>
 
         {/* Code line numbers effect */}
         <div className="absolute left-0 top-0 bottom-0 w-16 bg-slate-950/50 border-r border-slate-700/50 hidden lg:block">
@@ -454,11 +454,11 @@ export default function About() {
             className="text-center mb-12"
           >
             {/* Terminal header */}
-            <div className="inline-flex items-center space-x-3 mb-6 px-4 py-2 bg-slate-950/50 backdrop-blur-sm border border-slate-700/50 rounded-lg">
+            <div className="inline-flex items-center space-x-3 mb-6 px-4 py-2 bg-slate-950/50 backdrop-blur-sm border border-blue-500/30 rounded-lg glow-blue">
               <div className="flex space-x-1.5">
-                <div className="w-2.5 h-2.5 bg-red-400 rounded-full"></div>
-                <div className="w-2.5 h-2.5 bg-yellow-400 rounded-full"></div>
-                <div className="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse"></div>
+                <div className="w-2.5 h-2.5 bg-gradient-to-r from-red-400 to-red-500 rounded-full shadow-lg shadow-red-400/50"></div>
+                <div className="w-2.5 h-2.5 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full shadow-lg shadow-yellow-400/50"></div>
+                <div className="w-2.5 h-2.5 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full animate-pulse shadow-lg shadow-emerald-400/50"></div>
               </div>
               <span className="text-xs font-mono text-slate-400">dashboard.metrics.ts</span>
             </div>
@@ -467,7 +467,7 @@ export default function About() {
               <div className="flex items-start justify-center space-x-3 text-left">
                 <span className="text-sm font-mono text-emerald-400">{"// "}</span>
                 <div>
-                  <div className="text-sm font-mono text-cyan-400 mb-2">
+                  <div className="text-sm font-mono text-blue-400 mb-2">
                     <span className="text-blue-400">const</span> impact = await getMetrics();
                   </div>
                 </div>
@@ -496,8 +496,8 @@ export default function About() {
                   viewport={{ once: true }}
                   className="relative group"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-lg blur-xl group-hover:blur-2xl transition-all"></div>
-                  <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-blue-500/30 rounded-lg p-6 hover:border-blue-500/60 transition-all">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-lg blur-xl group-hover:blur-2xl transition-all"></div>
+                  <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-blue-500/30 rounded-lg p-6 hover:border-blue-500/60 transition-all glow-blue">
                     <div className="text-xs font-mono text-blue-400 mb-2 flex items-center space-x-2">
                       <stat.icon className="h-3 w-3" />
                       <span>{">"} {stat.label}</span>
@@ -512,8 +512,8 @@ export default function About() {
             </div>
 
             {/* Terminal prompt at bottom */}
-            <div className="mt-12 inline-flex items-center space-x-2 px-4 py-2 bg-slate-950/50 backdrop-blur-sm border border-slate-700/50 rounded-lg">
-              <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+            <div className="mt-12 inline-flex items-center space-x-2 px-4 py-2 bg-slate-950/50 backdrop-blur-sm border border-blue-500/30 rounded-lg glow-blue">
+              <div className="w-2 h-2 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full animate-pulse shadow-lg shadow-emerald-400/50"></div>
               <span className="text-xs font-mono text-emerald-400">tiverse@about:~$</span>
               <span className="text-xs font-mono text-slate-400 animate-pulse">_</span>
             </div>
