@@ -34,15 +34,21 @@ tiverse-website/
 │   ├── blog/              # Blog listing
 │   ├── contact/           # Contact form
 │   ├── projects/          # Projects showcase
+│   ├── research/          # R&D research papers
+│   │   ├── [slug]/       # Individual research document
+│   │   └── page.tsx      # Research listing
 │   ├── layout.tsx         # Root layout
 │   ├── page.tsx           # Homepage
 │   └── not-found.tsx      # 404 page
 ├── components/
 │   ├── ui/                # Shadcn/UI components
 │   ├── layout/            # Layout components (header, footer)
+│   ├── markdown-renderer.tsx # Markdown renderer with TOC
 │   └── theme-provider.tsx # Theme provider
 ├── lib/
+│   ├── research.ts        # Research document utilities
 │   └── utils.ts           # Utility functions
+├── research-documents/    # Markdown research papers
 ├── public/                # Static assets
 └── styles/
     └── globals.css        # Global styles
@@ -149,6 +155,35 @@ Add a new project to the `projects` array in `app/projects/page.tsx`:
   license: 'MIT',
 }
 ```
+
+### New Research Paper
+
+Add a new markdown file to the `research-documents/` directory:
+
+```markdown
+---
+title: "Your Research Title"
+authors: 
+  - "Author Name"
+date: "2024-01-20"
+abstract: "Brief abstract..."
+category: "AI/ML"
+tags: ["machine-learning", "research"]
+featured: true
+status: "published"
+---
+
+# Your Research Content
+
+Write your research paper in markdown format with full support for:
+- Code syntax highlighting
+- Mathematical equations (LaTeX)
+- Tables and diagrams
+- Automatic table of contents
+- Citations and references
+```
+
+See `research-documents/README.md` for detailed documentation on writing research papers.
 
 ## 🚀 Deployment
 
