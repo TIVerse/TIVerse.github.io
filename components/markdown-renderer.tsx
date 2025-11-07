@@ -101,18 +101,18 @@ export function MarkdownRenderer({ content, showTOC = true, className }: Markdow
           <div className="sticky top-24 space-y-4">
             <Card className="p-6 border-2 border-border/50 shadow-xl bg-gradient-to-br from-background via-background to-accent/5 overflow-hidden">
               <div className="relative">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-full blur-2xl"></div>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-2xl"></div>
                 
                 <div className="flex items-center space-x-2 mb-4 pb-3 border-b border-border/50">
                   <div className="flex space-x-1">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
-                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                    <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse shadow-sm shadow-blue-400/50"></div>
+                    <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse shadow-sm shadow-purple-400/50" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="w-2 h-2 bg-teal-400 rounded-full animate-pulse shadow-sm shadow-teal-400/50" style={{ animationDelay: '0.4s' }}></div>
                   </div>
                   <span className="text-xs font-mono text-muted-foreground">table_of_contents.ts</span>
                 </div>
 
-                <h3 className="text-sm font-mono font-bold mb-4 text-cyan-600 dark:text-cyan-400 flex items-center relative z-10">
+                <h3 className="text-sm font-mono font-bold mb-4 text-blue-600 dark:text-blue-400 flex items-center relative z-10">
                   <span className="text-lg mr-2">{"📑"}</span> Contents
                 </h3>
 
@@ -128,12 +128,12 @@ export function MarkdownRenderer({ content, showTOC = true, className }: Markdow
                         item.level === 3 && 'pl-8 text-xs',
                         item.level >= 4 && 'pl-11 text-xs',
                         activeId === item.id
-                          ? 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-600 dark:text-cyan-400 border-l-2 border-cyan-500'
+                          ? 'bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-600 dark:text-blue-400 border-l-2 border-blue-500'
                           : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
                       )}
                     >
                       {activeId === item.id && (
-                        <span className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-cyan-500 to-blue-500 rounded-r"></span>
+                        <span className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-blue-500 to-purple-500 rounded-r"></span>
                       )}
                       <Hash className={cn(
                         'h-3 w-3 mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0',
@@ -150,13 +150,13 @@ export function MarkdownRenderer({ content, showTOC = true, className }: Markdow
             <Card className="p-4 border border-border/50 bg-gradient-to-br from-background to-accent/5">
               <div className="text-xs font-mono text-muted-foreground mb-2 flex items-center justify-between">
                 <span>Reading Progress</span>
-                <span className="text-cyan-600 dark:text-cyan-400 font-bold">
+                <span className="text-blue-600 dark:text-blue-400 font-bold">
                   {Math.min(Math.round((toc.findIndex(item => item.id === activeId) + 1) / toc.length * 100), 100)}%
                 </span>
               </div>
               <div className="w-full bg-accent/30 rounded-full h-2 overflow-hidden">
                 <div 
-                  className="h-full bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 transition-all duration-300 rounded-full"
+                  className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 transition-all duration-300 rounded-full"
                   style={{ width: `${Math.min((toc.findIndex(item => item.id === activeId) + 1) / toc.length * 100, 100)}%` }}
                 ></div>
               </div>
@@ -187,19 +187,19 @@ export function MarkdownRenderer({ content, showTOC = true, className }: Markdow
             ]}
             components={{
               h1: ({ node, ...props }) => (
-                <h1 className="text-4xl font-bold mt-12 mb-6 text-foreground relative pb-4 border-b-2 border-gradient-to-r from-cyan-500 to-blue-500" {...props}>
+                <h1 className="text-4xl font-bold mt-12 mb-6 text-foreground relative pb-4 border-b-2 border-gradient-to-r from-blue-500 to-purple-500" {...props}>
                   <span className="relative z-10">{props.children}</span>
-                  <div className="absolute bottom-0 left-0 w-20 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"></div>
+                  <div className="absolute bottom-0 left-0 w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
                 </h1>
               ),
               h2: ({ node, ...props }) => (
-                <h2 className="text-3xl font-bold mt-10 mb-5 text-foreground relative pl-4 border-l-4 border-cyan-500" {...props}>
+                <h2 className="text-3xl font-bold mt-10 mb-5 text-foreground relative pl-4 border-l-4 border-blue-500" {...props}>
                   <span className="relative z-10">{props.children}</span>
                 </h2>
               ),
               h3: ({ node, ...props }) => (
                 <h3 className="text-2xl font-semibold mt-8 mb-4 text-foreground flex items-center gap-2" {...props}>
-                  <span className="text-cyan-500">{"#"}</span>
+                  <span className="text-blue-500">{"#"}</span>
                   {props.children}
                 </h3>
               ),
@@ -217,7 +217,7 @@ export function MarkdownRenderer({ content, showTOC = true, className }: Markdow
               ),
               a: ({ node, ...props }) => (
                 <a 
-                  className="text-cyan-600 hover:text-cyan-700 underline underline-offset-2 font-medium transition-colors" 
+                  className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 underline underline-offset-2 font-medium transition-colors" 
                   target="_blank"
                   rel="noopener noreferrer"
                   {...props} 
@@ -233,9 +233,9 @@ export function MarkdownRenderer({ content, showTOC = true, className }: Markdow
                 <li className="text-foreground leading-relaxed" {...props} />
               ),
               blockquote: ({ node, ...props }) => (
-                <blockquote className="my-6 pl-6 pr-4 py-4 border-l-4 border-cyan-500 italic text-muted-foreground bg-gradient-to-r from-cyan-50/50 to-blue-50/30 dark:from-cyan-950/20 dark:to-blue-950/10 rounded-r-lg shadow-sm" {...props}>
+                <blockquote className="my-6 pl-6 pr-4 py-4 border-l-4 border-blue-500 italic text-muted-foreground bg-gradient-to-r from-blue-50/50 to-purple-50/30 dark:from-blue-950/20 dark:to-purple-950/10 rounded-r-lg shadow-sm" {...props}>
                   <div className="flex items-start gap-3">
-                    <span className="text-2xl text-cyan-500/40">❝</span>
+                    <span className="text-2xl text-blue-500/40">❝</span>
                     <div className="flex-1">{props.children}</div>
                   </div>
                 </blockquote>
@@ -266,7 +266,7 @@ export function MarkdownRenderer({ content, showTOC = true, className }: Markdow
                     </pre>
                   </div>
                 ) : (
-                  <code className="px-2 py-1 rounded-md bg-cyan-100 dark:bg-cyan-950/30 font-mono text-sm text-cyan-700 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-800/50" {...props}>
+                  <code className="px-2 py-1 rounded-md bg-blue-100 dark:bg-blue-950/30 font-mono text-sm text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800/50" {...props}>
                     {children}
                   </code>
                 );
@@ -280,7 +280,7 @@ export function MarkdownRenderer({ content, showTOC = true, className }: Markdow
                 </div>
               ),
               thead: ({ node, ...props }) => (
-                <thead className="bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10 backdrop-blur-sm" {...props} />
+                <thead className="bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-teal-500/10 backdrop-blur-sm" {...props} />
               ),
               tbody: ({ node, ...props }) => (
                 <tbody className="bg-background/50" {...props} />
