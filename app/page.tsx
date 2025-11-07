@@ -43,7 +43,7 @@ const floatingCodeSnippets = [
 const FloatingCodeSnippet = ({ code, delay, duration, x, y }: { code: string; delay: number; duration: number; x: number; y: number }) => {
   return (
     <motion.div
-      className="absolute text-sm font-mono text-cyan-600/40 dark:text-cyan-400/30 whitespace-nowrap pointer-events-none"
+      className="absolute text-sm font-mono text-blue-600/40 dark:text-blue-400/30 whitespace-nowrap pointer-events-none"
       style={{
         left: `${x}%`,
         top: `${y}%`,
@@ -97,13 +97,13 @@ const AnimatedShape = ({ type, delay, x, y }: { type: 'circle' | 'square' | 'tri
       }}
     >
       {type === 'circle' && (
-        <div className="w-20 h-20 rounded-full border-2 border-cyan-500/60 dark:border-cyan-400/40" />
+        <div className="w-20 h-20 rounded-full border-2 border-blue-500/60 dark:border-blue-400/40" />
       )}
       {type === 'square' && (
-        <div className="w-20 h-20 border-2 border-orange-500/60 dark:border-orange-400/40" />
+        <div className="w-20 h-20 border-2 border-purple-500/60 dark:border-purple-400/40" />
       )}
       {type === 'triangle' && (
-        <div className="w-0 h-0 border-l-[40px] border-l-transparent border-r-[40px] border-r-transparent border-b-[70px] border-b-blue-500/60 dark:border-b-blue-400/40" />
+        <div className="w-0 h-0 border-l-[40px] border-l-transparent border-r-[40px] border-r-transparent border-b-[70px] border-b-teal-500/60 dark:border-b-teal-400/40" />
       )}
     </motion.div>
   );
@@ -166,9 +166,9 @@ export default function Home() {
         {/* Grid pattern background */}
         <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
-        {/* Animated Gradient overlays */}
+        {/* Animated Gradient overlays - Vibrant */}
         <motion.div 
-          className="absolute inset-0 z-[1] bg-gradient-to-br from-cyan-50 via-background to-orange-50/30 dark:from-cyan-950 dark:via-background dark:to-orange-950"
+          className="absolute inset-0 z-[1] bg-gradient-to-br from-blue-50 via-background via-purple-50/30 to-teal-50/30 dark:from-blue-950 dark:via-background dark:via-purple-950/30 dark:to-teal-950/30"
           animate={{
             backgroundPosition: ['0% 0%', '100% 100%'],
           }}
@@ -179,7 +179,7 @@ export default function Home() {
           }}
         />
         <motion.div 
-          className="absolute inset-0 z-[2] bg-[radial-gradient(circle_at_30%_20%,rgba(34,211,238,0.25),transparent_50%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(34,211,238,0.3),transparent_50%)]"
+          className="absolute inset-0 z-[2] bg-[radial-gradient(circle_at_30%_20%,rgba(96,165,250,0.25),transparent_50%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(96,165,250,0.3),transparent_50%)]"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.6, 1, 0.6],
@@ -191,7 +191,7 @@ export default function Home() {
           }}
         />
         <motion.div 
-          className="absolute inset-0 z-[2] bg-[radial-gradient(circle_at_70%_80%,rgba(251,146,60,0.2),transparent_50%)] dark:bg-[radial-gradient(circle_at_70%_80%,rgba(251,146,60,0.25),transparent_50%)]"
+          className="absolute inset-0 z-[2] bg-[radial-gradient(circle_at_70%_80%,rgba(167,139,250,0.2),transparent_50%)] dark:bg-[radial-gradient(circle_at_70%_80%,rgba(167,139,250,0.25),transparent_50%)]"
           animate={{
             scale: [1, 1.3, 1],
             opacity: [0.5, 0.9, 0.5],
@@ -229,11 +229,11 @@ export default function Home() {
               transition={{ duration: 0.6 }}
             >
               {/* Terminal-style status badge */}
-              <div className="inline-flex items-center space-x-3 mb-6 px-4 py-2 bg-background/80 backdrop-blur-sm border border-border/50 rounded-lg shadow-lg">
+              <div className="inline-flex items-center space-x-3 mb-6 px-4 py-2 bg-background/80 backdrop-blur-sm border border-border/50 rounded-lg shadow-lg glow-blue">
                 <div className="flex space-x-1.5">
-                  <div className="w-2.5 h-2.5 bg-red-400 rounded-full"></div>
-                  <div className="w-2.5 h-2.5 bg-yellow-400 rounded-full"></div>
-                  <div className="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse"></div>
+                  <div className="w-2.5 h-2.5 bg-gradient-to-r from-red-400 to-red-500 rounded-full shadow-lg shadow-red-400/50"></div>
+                  <div className="w-2.5 h-2.5 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full shadow-lg shadow-yellow-400/50"></div>
+                  <div className="w-2.5 h-2.5 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full animate-pulse shadow-lg shadow-emerald-400/50"></div>
                 </div>
                 <span className="text-xs font-mono text-muted-foreground">status: building_in_public</span>
               </div>
@@ -242,7 +242,7 @@ export default function Home() {
               <div className="mb-6 space-y-2">
                 <div className="text-left max-w-fit mx-auto">
                   <span className="text-sm font-mono text-muted-foreground/70">1 </span>
-                  <span className="text-sm font-mono text-cyan-500">const</span>
+                  <span className="text-sm font-mono text-blue-500">const</span>
                   <span className="text-sm font-mono text-foreground"> mission = </span>
                   <span className="text-sm font-mono text-blue-500">"</span>
                 </div>
@@ -261,16 +261,16 @@ export default function Home() {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.4, type: "spring", stiffness: 100 }}
                   >
-                    <span className="font-mono bg-gradient-to-r from-cyan-600 via-blue-500 to-orange-500 bg-clip-text text-transparent">
+                    <span className="font-mono bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 bg-clip-text text-transparent">
                       {typedText}
                       <motion.span
                         animate={{ opacity: [1, 0] }}
                         transition={{ duration: 0.8, repeat: Infinity, repeatType: 'reverse' }}
-                        className="inline-block w-0.5 h-12 ml-1 bg-gradient-to-b from-cyan-600 to-orange-500 align-middle"
+                        className="inline-block w-0.5 h-12 ml-1 bg-gradient-to-b from-blue-500 to-purple-500 align-middle"
                       />
                     </span>
                     <motion.span 
-                      className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-600 via-blue-500 to-orange-500 rounded-full"
+                      className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 rounded-full"
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
                       transition={{ duration: 0.8, delay: 1.8 }}
@@ -313,7 +313,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button size="lg" className="font-mono bg-gradient-to-r from-cyan-600 to-orange-600 hover:from-cyan-700 hover:to-orange-700 text-white shadow-lg hover:shadow-xl transition-all group relative overflow-hidden" asChild>
+                <Button size="lg" className="font-mono bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 hover:from-blue-700 hover:via-purple-700 hover:to-teal-700 text-white shadow-lg hover:shadow-xl transition-all group relative overflow-hidden glow-blue" asChild>
                   <Link href="/projects">
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0"
@@ -355,7 +355,7 @@ export default function Home() {
                 whileHover={{ y: -5 }}
               >
                 <motion.div 
-                  className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-lg blur-xl"
+                  className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-lg blur-xl"
                   animate={{
                     scale: [1, 1.1, 1],
                     opacity: [0.5, 0.8, 0.5],
@@ -365,16 +365,16 @@ export default function Home() {
                     repeat: Infinity,
                   }}
                 />
-                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-cyan-500/30 rounded-lg p-6 hover:border-cyan-500/60 transition-all">
+                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-blue-500/30 rounded-lg p-6 hover:border-blue-500/60 transition-all glow-blue">
                   <motion.div 
-                    className="text-xs font-mono text-cyan-400 mb-2"
+                    className="text-xs font-mono text-blue-400 mb-2"
                     animate={{ opacity: [0.7, 1, 0.7] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
                     {">"}  projects.length
                   </motion.div>
                   <motion.div 
-                    className="text-3xl lg:text-4xl font-bold font-mono text-orange-400 mb-1"
+                    className="text-3xl lg:text-4xl font-bold font-mono text-purple-400 mb-1"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: 'spring', stiffness: 200, delay: 0.6 }}
@@ -393,7 +393,7 @@ export default function Home() {
                 whileHover={{ y: -5 }}
               >
                 <motion.div 
-                  className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-amber-500/10 rounded-lg blur-xl"
+                  className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-teal-500/10 rounded-lg blur-xl"
                   animate={{
                     scale: [1, 1.1, 1],
                     opacity: [0.5, 0.8, 0.5],
@@ -404,16 +404,16 @@ export default function Home() {
                     delay: 0.5,
                   }}
                 />
-                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-orange-500/30 rounded-lg p-6 hover:border-orange-500/60 transition-all">
+                <div className="relative bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm border border-purple-500/30 rounded-lg p-6 hover:border-purple-500/60 transition-all glow-purple">
                   <motion.div 
-                    className="text-xs font-mono text-orange-400 mb-2"
+                    className="text-xs font-mono text-purple-400 mb-2"
                     animate={{ opacity: [0.7, 1, 0.7] }}
                     transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
                   >
                     {">"}  stars.count()
                   </motion.div>
                   <motion.div 
-                    className="text-3xl lg:text-4xl font-bold font-mono text-amber-400 mb-1"
+                    className="text-3xl lg:text-4xl font-bold font-mono text-teal-400 mb-1"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: 'spring', stiffness: 200, delay: 0.7 }}
@@ -452,7 +452,7 @@ export default function Home() {
                     {">"}  contributors.size
                   </motion.div>
                   <motion.div 
-                    className="text-3xl lg:text-4xl font-bold font-mono text-cyan-400 mb-1"
+                    className="text-3xl lg:text-4xl font-bold font-mono text-emerald-400 mb-1"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: 'spring', stiffness: 200, delay: 0.8 }}
@@ -491,7 +491,7 @@ export default function Home() {
                     {">"}  forks.total
                   </motion.div>
                   <motion.div 
-                    className="text-3xl lg:text-4xl font-bold font-mono text-amber-400 mb-1"
+                    className="text-3xl lg:text-4xl font-bold font-mono text-teal-400 mb-1"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: 'spring', stiffness: 200, delay: 0.9 }}
